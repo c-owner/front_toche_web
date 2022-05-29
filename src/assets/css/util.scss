@@ -38,6 +38,20 @@ h5 { font-size: 16px; }
 .p-relative {position: relative;}
 
 
+
+
+
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+li {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
 /* ant Design */
 .ant-input:focus, .ant-input:hover, .ant-input:active {
     //outline: none !important;
@@ -66,6 +80,7 @@ h5 { font-size: 16px; }
 }
 
 .in-input-btn {
+    justify-content: center;
     input {
         width: 80%;
     }
