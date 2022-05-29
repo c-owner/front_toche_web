@@ -2,6 +2,7 @@ import React from "react";
 import {Input, Button} from "antd";
 import "../assets/css/main.css";
 import {MagnifyingGlass} from "phosphor-react";
+import logo from "../assets/images/toche-Logo-512.png";
 
 function MainPage() {
   
@@ -9,7 +10,7 @@ function MainPage() {
       <div className="main-wrap">
         
         <div className="main-search">
-            <img src={} alt="" />
+            <img src={logo} alt="" width={300}/>
           <div className="d-flex in-input-btn">
             <Input type="text" placeholder="검색 미정" className="input-style" />
             <Button><MagnifyingGlass size={24} /></Button>
