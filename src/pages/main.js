@@ -10,6 +10,33 @@ function MainPage() {
     const inlineStyle = {
         backgroundImage: `url(${backgroundUrl})`
     };
+    const tab_list = [
+        {
+            no: '0',
+            name: '전체',
+            url: '/',
+        },
+        {
+            no: '1',
+            name: '신규 콘텐츠',
+            url: '/',
+        },
+        {
+            no: '2',
+            name: '패치 노트',
+            url: '/',
+        },
+        {
+            no: '3',
+            name: '커뮤니티',
+            url: '/',
+        },
+        {
+            no: '4',
+            name: '전략적 팀 전투 e스포츠',
+            url: '/',
+        },
+    ]
     return (
         <div className="main-wrap">
             
@@ -40,17 +67,22 @@ function MainPage() {
                 
                 <div className="new_content">
                     <ul className="d-flex tab_content">
-                        <li>전체</li>
-                        <li>신규 콘텐츠</li>
-                        <li>패치 노트</li>
-                        <li>커뮤니티</li>
-                        <li>전략적 팀 전투 e스포츠</li>
+                        {
+                            tab_list.map((tab) => {
+                                return (
+                                    <li onClick={function() {
+                                    }}>
+                                        {tab.name}
+                                    </li>
+                                )
+                            })
+                        }
                     </ul>
                     <div>
                     
                     </div>
                 </div>
-                
+            
             </div>
         </div>
     );
