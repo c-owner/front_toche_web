@@ -1,0 +1,75 @@
+/**************************
+    Developer: corner,
+    Date: 2022-05-29,
+    Description: css util
+***************************/
+
+/* dispaly */
+.d-flex {display: flex;}
+.d-inline-b {display: inline-block;}
+
+/* text */
+.text-center {text-align: center;}
+
+.p-absolu {position: absolute;}
+.p-relative {position: relative;}
+
+.w-100-p {width: 100%;}
+.h-100-p {height: 100%;}
+
+
+h1, h2, h3, h4, h5 {
+    font-weight: 700 !important;
+    color: #555555 !important;
+    font-family: "Noto Sans KR";
+}
+h1 { font-size: 26px; }
+h2 { font-size: 24px; }
+h3 { font-size: 20px; }
+h4 { font-size: 18px; }
+h5 { font-size: 16px; }
+
+.text-center {text-align: center;}
+.text-left {text-align: left;}
+.text-right {text-align: right;}
+.d-flex {display: flex;}
+.d-inline-b {display: inline-block;}
+.p-absolu {position: absolute;}
+.p-relative {position: relative;}
+
+
+/* ant Design */
+.ant-input:focus, .ant-input:hover, .ant-input:active {
+    //outline: none !important;
+    //border-color: #a4a4a4 !important;
+    //box-shadow: none !important;
+    height: 45px;
+}
+
+.ant-btn {
+    min-height: 45px;
+    min-width: 65px;
+    //border: 1px solid #cccccc !important;
+    border-radius: 4px !important;
+}
+
+.input-style {
+    //border: 1px solid #ccc !important;
+    border-radius: 4px !important;
+    height: 45px;
+    padding: 0 16px !important;
+    color: #333333 !important;
+    font-weight: 500 !important;
+    &::placeholder {
+        color: #cccccc !important;
+    }
+}
+
+.in-input-btn {
+    input {
+        width: 80%;
+    }
+    button {
+        margin-left: 10px;
+    }
+}
