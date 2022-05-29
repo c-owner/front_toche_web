@@ -2,7 +2,7 @@ import './App.css';
 import './assets/css/util.scss';
 import "antd/dist/antd.min.css";
 import Main from "./pages/main";
-import logo from "./assets/images/logo512.png"
+import logo from "./assets/images/toche-Logo-512.png"
 import "./assets/css/util.scss";
 
 
