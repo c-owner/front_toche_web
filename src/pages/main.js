@@ -1,10 +1,11 @@
-import React, {useState} from "react";
-import {Input, Button} from "antd";
-import "../assets/css/main.scss";
+import React from "react";
+import {Input} from "antd";
 import {MagnifyingGlass} from "phosphor-react";
 import logo from "../assets/images/toche-Logo-512.png";
 
 import {useNavigate} from "react-router-dom";
+
+const { Search } = Input;
 
 function MainPage() {
     const navigate = useNavigate();
@@ -32,7 +33,7 @@ function MainPage() {
         },
         {
             no: '3',
-            name: '커뮤니티',
+            name: '챔피언',
             url: '/?type=commu',
         },
         {
@@ -72,9 +73,10 @@ function MainPage() {
 
             <div className="text-center">
                 <img src={logo} alt="" width={300}/>
-                <div className="d-flex in-input-btn">
-                    <Input type="text" placeholder="검색 미정" className="input-style"/>
-                    <Button><MagnifyingGlass size={24}/></Button>
+                <div className="d-flex in-input-btn flex-center">
+                    <Search className="input-style" placeholder="검색어를 입력해주세요" enterButton={<MagnifyingGlass size={24}/>}
+                            // onSearch={value => navigate(`/search/${value}`)}
+                            size="large" loading={true} />
                 </div>
             </div>
 

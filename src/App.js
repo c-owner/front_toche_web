@@ -1,12 +1,11 @@
 import './App.css';
-import './assets/css/util.scss';
+import './assets/css/index.scss';
 import "antd/dist/antd.min.css";
 import Main from "./pages/main";
 import logo from "./assets/images/toche-Logo-512.png"
-import "./assets/css/util.scss";
 
 
-import ReactDOM from "react-dom/client";
+// import ReactDOM from "react-dom/client";
 import {
     BrowserRouter,
     Routes,

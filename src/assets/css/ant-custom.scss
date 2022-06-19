@@ -1,0 +1,21 @@
+
+.ant-input-group-wrapper {
+    width: 60% !important;
+}
+.ant-input, .ant-input-lg {
+    width: calc(100% - 5px) !important;
+    border-radius: 4px !important;
+    height: 45px;
+    padding: 0 16px !important;
+    color: #333333 !important;
+    font-weight: 500 !important;
+
+    &::placeholder {
+        color: #cccccc !important;
+    }
+}
+.ant-input-search-button {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+}
