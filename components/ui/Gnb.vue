@@ -16,12 +16,7 @@
 
                 <el-submenu index="2">
                     <template slot="title">시즌 {{ season[0] }}</template>
-                    <el-submenu index="2-4">
-                        <template slot="title">item four</template>
-                        <el-menu-item index="2-4-1">item one</el-menu-item>
-                        <el-menu-item index="2-4-2">item two</el-menu-item>
-                        <el-menu-item index="2-4-3">item three</el-menu-item>
-                    </el-submenu>
+
                     <el-menu-item index="2-1">증강</el-menu-item>
                     <el-menu-item index="2-2">챔피언</el-menu-item>
                     <el-menu-item index="2-3">특성</el-menu-item>
