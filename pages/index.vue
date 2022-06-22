@@ -6,6 +6,9 @@
 
 <script>
 export default {
-  name: 'IndexPage'
+    name: 'IndexPage',
+    asyncData({ store }) {
+        return store.dispatch("getSeasonList");
+    },
 }
 </script>
