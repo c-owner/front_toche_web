@@ -31,3 +31,38 @@ icons
     height: 100vh;
     padding-top: 81px;
 }
+
+.el-menu-item {
+    min-height: 81px;
+}
+.el-submenu__title {
+    min-height: 81px;
+}
+.el-menu--horizontal .el-menu .el-menu-item {
+    min-height: auto !important;
+    text-align: center;
+    width: 100px;
+}
+
+.seasons-menu {
+    .el-menu--popup {
+        min-width: 100px;
+    }
+}
+
+.li-el-menu--item {
+    color: rgb(255, 255, 255); border-bottom-color: transparent; background-color: rgb(33, 33, 33);
+}
+
+.el-menu-demo {
+    span {
+        &:first-child {
+            line-height: 59px;
+            min-width: 80px;
+        }
+        a {
+            text-align: center;
+            margin: 0 auto;
+        }
+    }
+}
