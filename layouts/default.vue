@@ -5,7 +5,9 @@
                 <UiGnb />
             </el-header>
             <el-main>
-                <Nuxt/>
+                <div class="pt30 pb30 center-block text-center">
+                    <Nuxt/>
+                </div>
             </el-main>
         </el-container>
     </div>

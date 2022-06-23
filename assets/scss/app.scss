@@ -14,7 +14,7 @@ icons
     min-height: 60px;
 
     background-color: #212121;
-    position: fixed;
+    position: absolute;
     top: 0;
     width: 100%;
 
@@ -25,4 +25,9 @@ icons
 }
 
 .header {
+}
+
+.el-main {
+    height: 100vh;
+    padding-top: 81px;
 }
