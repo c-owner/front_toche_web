@@ -1,6 +1,6 @@
 <template>
     <div class="header side-center">
-        <div class="text-left">
+        <div class="text-left cursor" @click="$router.push('/')">
             <img src="@/assets/images/toche-Logo-512.png" alt="logo" width="80px;" />
         </div>
         <div>
@@ -12,22 +12,31 @@
                 background-color="#212121"
                 text-color="#fff"
                 active-text-color="#ffd04b">
-                <el-menu-item index="1">덱 가이드</el-menu-item>
+                <el-menu-item index="guide" >덱 가이드</el-menu-item>
 
-                <el-submenu index="2">
-                    <template slot="title">시즌 {{ season[0] }}</template>
-
-                    <el-menu-item index="2-1">증강</el-menu-item>
-                    <el-menu-item index="2-2">챔피언</el-menu-item>
-                    <el-menu-item index="2-3">특성</el-menu-item>
-                    <el-menu-item index="2-3">아이템</el-menu-item>
-                    <el-menu-item index="2-3">추천 덱</el-menu-item>
+                <el-submenu
+                    :hide-timeout="500"
+                    index="season">
+                    <template slot="title">시즌 {{ season }}</template>
+                    <el-menu-item index="1">시즌1</el-menu-item>
+                    <el-menu-item index="2">시즌2</el-menu-item>
+                    <el-menu-item index="3">시즌3</el-menu-item>
+                    <el-menu-item index="4">시즌4</el-menu-item>
+                    <el-menu-item index="5">시즌5</el-menu-item>
+                    <el-menu-item index="6">시즌6</el-menu-item>
+                    <el-menu-item index="7">시즌7</el-menu-item>
                 </el-submenu>
 
+                <el-menu-item index="augment">증강</el-menu-item>
+                <el-menu-item index="unit">챔피언</el-menu-item>
+                <el-menu-item index="trait">특성</el-menu-item>
+                <el-menu-item index="item">아이템</el-menu-item>
+                <el-menu-item index="deck">추천 덱</el-menu-item>
             </el-menu>
         </div>
         <div>
-            <el-select
+
+            <!--            <el-select
                 class="cursor in_block"
                 v-model="season"
                 collapse-tags
@@ -39,7 +48,7 @@
                     :label="season.label"
                     :value="season.value">
                 </el-option>
-            </el-select>
+            </el-select>-->
         </div>
     </div>
 </template>
@@ -50,31 +59,7 @@ export default {
 
     data() {
         return {
-            seasonOptions: [{
-                value: 1,
-                label: '시즌1'
-            }, {
-                value: 2,
-                label: '시즌2'
-            }, {
-                value: 3,
-                label: '시즌3'
-            }, {
-                value: 4,
-                label: '시즌4'
-            }, {
-                value: 5,
-                label: '시즌5'
-            }, {
-                value: 6,
-                label: '시즌6'
-            }, {
-                value: 7,
-                label: '시즌7'
-            }
-            ],
-            season: [],
-            currentSeason: '',
+            season: '7',
             activeIndex: '1',
 
         };
@@ -83,8 +68,18 @@ export default {
     },
     methods: {
         handleSelect(key, keyPath) {
-
             console.log(key, keyPath);
+            if (key === 'guide') {
+                this.$router.push('/'+ key + '/' + this.season + '/unit')
+                return;
+            }
+            if (keyPath.length > 1) {
+                this.season = key;
+                // this.$router.push('/seasons/' + key);
+            } else {
+                this.$router.push('/' + key + '/' + this.season);
+            }
+
         },
     },
 }
