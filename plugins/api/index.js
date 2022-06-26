@@ -8,7 +8,11 @@ export default (context, inject, app) => {
                 return request.get('/seasons', params).then(({data}) => data);
             },
         },
-        member: {},
+        unit: {
+            getUnitList(params) {
+                return request.get('/units', params).then(({data}) => data);
+            }
+        },
     }
     inject('api', api);
 }

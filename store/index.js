@@ -6,9 +6,9 @@ import api from '../plugins/api/index.js';
 
 export const state = () => ({
 
-    currentSeason: '',
+    currentSeason: 7,
     sessionList: [],
-
+    unitList: [],
 })
 
 
@@ -21,6 +21,10 @@ export const mutations = {
     setSessionList(state, data) {
         state.sessionList = data;
     },
+
+    setUnitList(state, data) {
+        state.unitList = data;
+    }
 }
 
 
@@ -33,6 +37,10 @@ export const getters = {
     sessions: (state) => {
         return state.sessionList || [];
     },
+
+    units: (state) => {
+        return state.unitList || [];
+    }
 }
 
 

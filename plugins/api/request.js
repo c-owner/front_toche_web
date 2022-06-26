@@ -3,6 +3,7 @@ import {api_url} from "~/plugins/api/config";
 
 export const request = {
     get(path, params=null) {
+        console.log(params);
         return axios.get(`${api_url + path}`, {params: params})
             .then(res => {
                 return res;
