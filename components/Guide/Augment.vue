@@ -1,14 +1,12 @@
 <template>
-
     <div>
-          증강체 리스트 최적 덱 조회
+        증강체 가이드 데이터
     </div>
-
 </template>
 
 <script>
 export default {
-    name: "_id"
+    name: "GuideAugment"
 }
 </script>
 

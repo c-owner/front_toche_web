@@ -1,14 +1,12 @@
 <template>
-
     <div>
-        챔피언 리스트 최적 덱 조회
+        유닛 가이드 데이터
     </div>
-
 </template>
 
 <script>
 export default {
-    name: "_id"
+    name: "GuideUnit"
 }
 </script>
 

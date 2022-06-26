@@ -18,8 +18,8 @@
                     :hide-timeout="500"
                     popper-class="seasons-menu"
                     index="season">
-                    <template slot="title">시즌 {{ season }}</template>
-                    <el-menu-item v-for="(season, s_idx) in this.$store.state.sessionList" :index="season.name"
+                    <template slot="title">시즌 {{ currentSeason }}</template>
+                    <el-menu-item v-for="(season, s_idx) in $store.state.sessionList" :index="season.num.toString()"
                                   :key="s_idx">
                         {{ season.title }}
                     </el-menu-item>
@@ -40,16 +40,45 @@
 <script>
 export default {
     name: "Gnb",
-
     data() {
         return {
-            season: '7',
+            currentSeason: '7',
             activeIndex: '1',
             augment: false,
             trait: false,
         };
     },
-    mounted() {
+    async mounted() {
+        try {
+
+        await this.$api.season.getSeasonList().then(res => {
+
+            res.forEach((item, index) => {
+                if (item.num) {
+                    item.title = "시즌" + item.num;
+                }
+                if (res[index + 1]) {
+                    if (item.name.indexOf('Tutorial') > 0) {
+                        item.title = "시즌" + item.num + " 설명서";
+                        item.num += 0.5;
+                    } else {
+                        // 겹치면 0.5 시즌
+                        if (res[index + 1].num === item.num) {
+                            item.num += 0.5;
+                        }
+                    }
+                }
+                if (item.name.indexOf('Stage') > 0) {
+                    item.title = "시즌" + item.num + "";
+                }
+            });
+
+            this.$store.commit('setSessionList', res);
+            this.$store.commit('setCurrentSeason', this.currentSeason);
+        });
+        } catch (e) {
+            console.log(e);
+        }
     },
     methods: {
         nameFilterSet(name) {
@@ -60,14 +89,16 @@ export default {
                 return;
             }
             if (key === 'guide') {
-                this.$router.push('/'+ key + '/' + this.season + '/unit')
+                this.$store.commit('setCurrentSeason', this.currentSeason);
+                this.$router.push('/'+ key + '/' + this.currentSeason)
                 return;
             }
             if (keyPath.length > 1) {
-                this.season = key;
+                this.currentSeason = key;
+                this.$store.commit('setCurrentSeason', this.currentSeason);
                 // this.$router.push('/seasons/' + key);
             } else {
-                this.$router.push('/' + key + '/' + this.season);
+                this.$router.push('/' + key + '/' + this.currentSeason);
             }
 
         },
