@@ -24,7 +24,10 @@ export default {
 
     // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
     plugins: [
-        '@/plugins/element-ui'
+        '@/plugins/element-ui',
+        '~plugins/api/index.js',
+        '~plugins/api/config.js',
+        '~plugins/api/request.js',
     ],
 
     // Auto import components: https://go.nuxtjs.dev/config-components
@@ -34,7 +37,9 @@ export default {
     buildModules: [],
 
     // Modules: https://go.nuxtjs.dev/config-modules
-    modules: [],
+    modules: [
+        '@nuxtjs/proxy'
+    ],
 
     // Build Configuration: https://go.nuxtjs.dev/config-build
     build: {
@@ -45,4 +50,10 @@ export default {
     server: {
         port: 3000,
     },
+    axios: {
+        proxy: true,
+    },
+    proxy: {
+        '/api/v1': { target: 'https://tocheapi.heekng.com', pathRewrite: { '^/api/v1': '' } },
+    }
 }

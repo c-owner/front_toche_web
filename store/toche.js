@@ -27,5 +27,10 @@ export const getters = {
 
 export const actions = {
 
+    async get_session_list(store, params) {
+        await api.season.getSeasonList(params).then(res => {
+            store.commit('setSessionList', res);
+        });
+    }
 
 }

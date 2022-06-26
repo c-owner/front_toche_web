@@ -1,7 +1,7 @@
 <template>
     <div class="header side-center">
         <div class="text-left cursor" @click="$router.push('/')">
-            <img src="@/assets/images/toche-Logo-512.png" alt="logo" width="80px;" />
+            <img src="@/assets/images/toche-Logo-512.png" alt="logo" width="80" />
         </div>
         <div>
             <el-menu
@@ -19,83 +19,21 @@
                     popper-class="seasons-menu"
                     index="season">
                     <template slot="title">시즌 {{ season }}</template>
-                    <el-menu-item index="1">시즌1</el-menu-item>
-                    <el-menu-item index="2">시즌2</el-menu-item>
-                    <el-menu-item index="3">시즌3</el-menu-item>
-                    <el-menu-item index="4">시즌4</el-menu-item>
-                    <el-menu-item index="5">시즌5</el-menu-item>
-                    <el-menu-item index="6">시즌6</el-menu-item>
-                    <el-menu-item index="7">시즌7</el-menu-item>
+                    <el-menu-item v-for="(season, s_idx) in this.$store.state.sessionList" :index="season.name"
+                                  :key="s_idx">
+                        {{ season.title }}
+                    </el-menu-item>
                 </el-submenu>
 
                 <el-menu-item index="unit">챔피언</el-menu-item>
                 <el-menu-item index="item">아이템</el-menu-item>
                 <el-menu-item index="deck">추천 덱</el-menu-item>
-
-
-                <el-popover
-                    ref="augmentPopover"
-                    placement="bottom"
-                    title="증강체"
-                    width="500"
-                    trigger="hover"
-                    content="증강체 내용">
-                    <el-link type="success" class="text-center cursor" slot="reference" v-popover:augmentPopover>증강체</el-link>
-                </el-popover>
-                <el-popover
-                    ref="traitPopover"
-                    placement="bottom"
-                    title="특성"
-                    width="500"
-                    trigger="hover"
-                    content="특성 내용">
-                    <el-link type="primary" class="text-center" slot="reference" v-popover:traitPopover>특성</el-link>
-                </el-popover>
-
-<!--                <el-submenu index="info" :hide-timeout="500">
-                    <el-popover
-                        ref="augmentPopover"
-                        placement="bottom"
-                        title="증강체"
-                        width="500"
-                        trigger="hover"
-                        content="증강체 내용">
-                        <el-link type="success" class="text-center cursor" slot="reference" v-popover:augmentPopover>증강체</el-link>
-                    </el-popover>
-                    <div class="mb30"></div>
-                    <el-popover
-                        ref="traitPopover"
-                        placement="bottom"
-                        title="특성"
-                        width="500"
-                        trigger="hover"
-                        content="특성 내용">
-                        <el-link type="primary" class="text-center" slot="reference" v-popover:traitPopover>특성</el-link>
-                    </el-popover>
-                    <template slot="title" >정보</template>
-                </el-submenu>-->
-
-
-                <!--                <el-menu-item >증강</el-menu-item>-->
-<!--                <el-menu-item @mouseover="openPopover('trait')" @mouseleave="closePopover('trait')">특성</el-menu-item>-->
+                <el-menu-item index="augment">증강체</el-menu-item>
+                <el-menu-item index="trait">특성</el-menu-item>
             </el-menu>
         </div>
-        <div>
+        <div class="none_item"></div>
 
-            <!--            <el-select
-                class="cursor in_block"
-                v-model="season"
-                collapse-tags
-                style="margin-left: 20px;"
-                placeholder="시즌 선택">
-                <el-option
-                    v-for="season in seasonOptions"
-                    :key="season.value"
-                    :label="season.label"
-                    :value="season.value">
-                </el-option>
-            </el-select>-->
-        </div>
     </div>
 </template>
 
@@ -114,6 +52,9 @@ export default {
     mounted() {
     },
     methods: {
+        nameFilterSet(name) {
+
+        },
         handleSelect(key, keyPath) {
             if (key === null) {
                 return;
@@ -129,13 +70,6 @@ export default {
                 this.$router.push('/' + key + '/' + this.season);
             }
 
-        },
-        openPopover(key) {
-            console.log(this[key])
-            this[key] = true;
-        },
-        closePopover(key) {
-            this[key] = false;
         },
     },
 }
