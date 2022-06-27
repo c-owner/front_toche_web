@@ -91,9 +91,6 @@ export default {
         },
     },
     methods: {
-        nameFilterSet(name) {
-
-        },
         handleSelect(key, keyPath) {
             if (key === null) {
                 return;
