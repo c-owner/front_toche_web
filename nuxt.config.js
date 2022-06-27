@@ -25,9 +25,7 @@ export default {
     // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
     plugins: [
         '@/plugins/element-ui',
-        '~plugins/api/index.js',
         '~plugins/api/config.js',
-        '~plugins/api/request.js',
     ],
 
     // Auto import components: https://go.nuxtjs.dev/config-components

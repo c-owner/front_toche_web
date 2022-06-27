@@ -23,14 +23,14 @@ export default {
     },
     methods: {
         getUnit() {
+            let activeIndex = this.$store.getters['currentSeason'];
             try {
-                let seasonId = this.$store.state.currentSeason;
+                let seasonId = this.$store.state.seasonList[activeIndex].id;
                 let params = {
                     seasonId: seasonId,
                 };
-                console.log(params)
-                this.$api.unit.getUnitList(params).then(res => {
-                    this.$store.commit('setUnitList', res);
+                this.$store.dispatch('getUnitList', params).then(res => {
+                    console.log(res)
                 });
             } catch (e) {
                 console.log(e)
