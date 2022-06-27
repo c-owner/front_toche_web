@@ -23,9 +23,8 @@ export default {
     },
     methods: {
         getUnit() {
-            let activeIndex = this.$store.getters['currentSeason'];
             try {
-                let seasonId = this.$store.state.seasonList[activeIndex].id;
+                let seasonId = this.$store.state.seasonInfo.id;
                 let params = {
                     seasonId: seasonId,
                 };
