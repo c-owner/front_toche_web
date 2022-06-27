@@ -1,7 +1,7 @@
 <template>
     <div class="header side-center">
         <div class="text-left cursor" @click="$router.push('/')">
-            <img src="@/assets/images/toche-Logo-512.png" alt="logo" width="80" />
+            <img src="@/assets/images/toche-Logo-512.png" alt="logo" width="80"/>
         </div>
         <div>
             <el-menu
@@ -12,15 +12,15 @@
                 background-color="#212121"
                 text-color="#fff"
                 active-text-color="#ffd04b">
-                <el-menu-item index="guide" >덱 가이드</el-menu-item>
+                <el-menu-item index="guide">덱 가이드</el-menu-item>
 
-                <el-submenu
+                <el-submenu v-if="$store.getters['seasons']"
                     :hide-timeout="500"
                     popper-class="seasons-menu"
                     index="season">
-                    <template slot="title">시즌 {{ currentSeason }}</template>
-                    <el-menu-item v-for="(season, s_idx) in $store.state.sessionList" :index="season.num.toString()"
-                                  :key="s_idx">
+                    <template slot="title">{{ $store.state.seasonInfo.title }}</template>
+                    <el-menu-item v-for="(season, s_idx) in seasons" :index="season.num.toString()"
+                                  :key="season.id">
                         {{ season.title }}
                     </el-menu-item>
                 </el-submenu>
@@ -50,35 +50,45 @@ export default {
     },
     async mounted() {
         try {
-
-        await this.$api.season.getSeasonList().then(res => {
-
-            res.forEach((item, index) => {
-                if (item.num) {
-                    item.title = "시즌" + item.num;
-                }
-                if (res[index + 1]) {
-                    if (item.name.indexOf('Tutorial') > 0) {
-                        item.title = "시즌" + item.num + " 설명서";
-                        item.num += 0.5;
-                    } else {
-                        // 겹치면 0.5 시즌
-                        if (res[index + 1].num === item.num) {
+            await this.$store.dispatch('getSeasonList').then(res => {
+                res.forEach((item, index) => {
+                    if (item.num) {
+                        item.title = "시즌" + item.num;
+                    }
+                    if (res[index + 1]) {
+                        if (item.name.indexOf('Tutorial') > 0) {
+                            item.title = "시즌" + item.num + " 설명서";
                             item.num += 0.5;
+                        } else {
+                            // 겹치면 0.5 시즌
+                            if (res[index + 1].num === item.num) {
+                                item.num += 0.5;
+                            }
                         }
                     }
-                }
-                if (item.name.indexOf('Stage') > 0) {
-                    item.title = "시즌" + item.num + "";
-                }
-            });
+                    if (item.name.indexOf('Stage') > 0) {
+                        item.title = "시즌" + item.num + "";
+                    }
+                });
+                this.$store.commit('setSeasonList', res);
 
-            this.$store.commit('setSessionList', res);
-            this.$store.commit('setCurrentSeason', this.currentSeason);
-        });
+                let seasonInfo = res.filter(res => {
+                    if (res.num === Number(this.currentSeason)) {
+                        return res;
+                    }
+                })[0];
+
+                this.$store.commit('setSeasonInfo', seasonInfo);
+                this.$store.commit('setCurrentSeason', this.currentSeason);
+            });
         } catch (e) {
             console.log(e);
         }
+    },
+    computed: {
+        seasons() {
+            return this.$store.getters['seasons'];
+        },
     },
     methods: {
         nameFilterSet(name) {
@@ -90,7 +100,7 @@ export default {
             }
             if (key === 'guide') {
                 this.$store.commit('setCurrentSeason', this.currentSeason);
-                this.$router.push('/'+ key + '/' + this.currentSeason)
+                this.$router.push('/' + key + '/' + this.currentSeason)
                 return;
             }
             if (keyPath.length > 1) {
@@ -100,6 +110,14 @@ export default {
             } else {
                 this.$router.push('/' + key + '/' + this.currentSeason);
             }
+            let seasonInfo = this.$store.state.seasonList.filter(res => {
+                if (res.num === Number(this.currentSeason)) {
+                    return res;
+                }
+            })[0];
+
+            this.$store.commit('setSeasonInfo', seasonInfo);
+            this.$store.commit('setCurrentSeason', this.currentSeason);
 
         },
     },

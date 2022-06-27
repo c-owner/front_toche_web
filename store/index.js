@@ -7,20 +7,23 @@ import {api_url} from "~/plugins/api/config";
 
 export const state = () => ({
 
-    currentSeason: 7,
-    sessionList: [],
+    seasonInfo: {
+    },
+    seasonList: [],
     unitList: [],
 })
 
 
 export const mutations = {
-
+    setSeasonInfo(state, data) {
+        state.seasonInfo = data;
+    },
     setCurrentSeason(state, data) {
-        state.currentSeason = data;
+        state.seasonInfo.currentSeason = data;
     },
 
-    setSessionList(state, data) {
-        state.sessionList = data;
+    setSeasonList(state, data) {
+        state.seasonList = data;
     },
 
     setUnitList(state, data) {
@@ -31,12 +34,14 @@ export const mutations = {
 
 export const getters = {
 
+    seasonInfo: state => state.seasonInfo,
+
     currentSeason: (state) => {
-        return state.currentSeason || '';
+        return state.seasonInfo.currentSeason || '';
     },
 
-    sessions: (state) => {
-        return state.sessionList || [];
+    seasons: (state) => {
+        return state.seasonList || [];
     },
 
     units: (state) => {
@@ -48,18 +53,18 @@ export const getters = {
 export const actions = {
 
     async getUnitList(store, params) {
-        return await axios.get(api_url + '/units', params).then((res) => {
-
+        return await axios.get(api_url + '/units', params).then(({data}) => {
+            return data;
         }).catch((err) => {
             console.log(err)
         });
     },
-    async getSeasonList(params) {
+    async getSeasonList(store, params) {
 
-        return await axios.get(api_url + '/seasons', params).then((res) => {
-
+        return await axios.get(api_url + '/seasons', params).then(({data}) => {
+            return data;
         }).catch((err) => {
-            console.log(err);
+            console.log(err)
         });
     },
 
