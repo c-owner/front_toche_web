@@ -1,32 +1,23 @@
 <template>
     <div>
-        <el-tabs type="border-card" v-model="tabIndex" @tab-click="tabClick">
-            <el-tab-pane :label="seasonInfo.title" >
-
+        <el-tabs type="border-card" v-model="tabIndex">
+            <el-tab-pane :label="seasonInfo.title" disabled>
             </el-tab-pane>
             <el-tab-pane label="챔피언 목록">
-                <ul>
-                    <li v-for="(unit, u_idx) in $store.state.unitList" :key="unit.id" class="unit-list">
-                        <div class="unit-box">
-                            <div class="unit-img-box">
-                                <img src="~/assets/images/favicon.png" :src="unit.iconPath" alt="챔피언 이미지">
-                            </div>
-                            <div class="unit_name">{{ unit.krName }}</div>
-                        </div>
-                    </li>
-                </ul>
+                <Unit />
+<!--                <Nuxt />-->
             </el-tab-pane>
             <el-tab-pane label="아이템 목록">
-
+                <Item />
             </el-tab-pane>
             <el-tab-pane label="추천 덱">
-
+                <Deck />
             </el-tab-pane>
             <el-tab-pane label="증강">
-
+                <Augment />
             </el-tab-pane>
             <el-tab-pane label="특성">
-
+                <Trait />
             </el-tab-pane>
 
         </el-tabs>
@@ -61,8 +52,8 @@ export default {
         }
     },
     methods: {
-        tabClick(key) {
-            
+        movePage(url) {
+            this.$router.push(url);
         },
         getUnit() {
             let seasonId;
