@@ -28,8 +28,18 @@ icons
 }
 
 .el-main {
-    height: 100vh;
     padding-top: 81px;
+}
+
+@media screen and (max-width: 768px) {
+    .el-main {
+        padding-top: 150px;
+    }
+}
+
+.main-container {
+    margin: 0 auto;
+    max-width: 1200px;
 }
 
 .el-menu-item {
@@ -65,4 +75,9 @@ icons
             margin: 0 auto;
         }
     }
+}
+
+.el-tabs__content {
+    overflow: unset !important;
+    position: unset !important;
 }

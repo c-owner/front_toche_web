@@ -1,6 +1,5 @@
 <template>
     <div>
-        Main Vue
         <div>
 
         </div>

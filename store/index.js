@@ -53,15 +53,14 @@ export const getters = {
 export const actions = {
 
     async getUnitList(store, params) {
-        return await axios.get(api_url + '/units', params).then(({data}) => {
+        return await axios.get(api_url + '/units?seasonId=' + params.seasonId).then(({data}) => {
             return data;
         }).catch((err) => {
             console.log(err)
         });
     },
     async getSeasonList(store, params) {
-
-        return await axios.get(api_url + '/seasons', params).then(({data}) => {
+        return await axios.get(api_url + '/seasons').then(({data}) => {
             return data;
         }).catch((err) => {
             console.log(err)
