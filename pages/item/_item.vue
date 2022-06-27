@@ -1,7 +1,7 @@
 <template>
     <div>
         <el-tabs type="border-card" v-model="tabIndex">
-            <el-tab-pane :label="seasonInfo.title" disabled>
+            <el-tab-pane :label="seasonInfo.title" disabled >
 
             </el-tab-pane>
             <el-tab-pane label="챔피언 목록">
@@ -37,10 +37,10 @@
 
 <script>
 export default {
-    name: "Unit",
+    name: "Item",
     data() {
         return {
-            tabIndex: '1',
+            tabIndex: '2',
         }
     },
     created() {

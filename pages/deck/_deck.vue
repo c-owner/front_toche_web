@@ -37,10 +37,10 @@
 
 <script>
 export default {
-    name: "Unit",
+    name: "Deck",
     data() {
         return {
-            tabIndex: '1',
+            tabIndex: '3',
         }
     },
     created() {

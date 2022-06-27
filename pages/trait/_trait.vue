@@ -37,10 +37,10 @@
 
 <script>
 export default {
-    name: "Unit",
+    name: "Trait",
     data() {
         return {
-            tabIndex: '1',
+            tabIndex: '5',
         }
     },
     created() {
