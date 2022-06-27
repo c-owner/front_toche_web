@@ -2,7 +2,8 @@
  * Developer : corner
  * Description : 해당 index 스토어
  ***********************/
-import api from '../plugins/api/index.js';
+import axios from "axios";
+import {api_url} from "~/plugins/api/config";
 
 export const state = () => ({
 
@@ -46,5 +47,20 @@ export const getters = {
 
 export const actions = {
 
+    async getUnitList(store, params) {
+        return await axios.get(api_url + '/units', params).then((res) => {
+
+        }).catch((err) => {
+            console.log(err)
+        });
+    },
+    async getSeasonList(params) {
+
+        return await axios.get(api_url + '/seasons', params).then((res) => {
+
+        }).catch((err) => {
+            console.log(err);
+        });
+    },
 
 }
