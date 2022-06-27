@@ -1,7 +1,7 @@
 <template>
     <div>
-        <el-tabs type="border-card">
-            <el-tab-pane :label="seasonInfo.title" >
+        <el-tabs type="border-card" v-model="tabIndex">
+            <el-tab-pane :label="seasonInfo.title" disabled>
 
             </el-tab-pane>
             <el-tab-pane label="챔피언 목록">
@@ -39,7 +39,9 @@
 export default {
     name: "Unit",
     data() {
-        return {}
+        return {
+            tabIndex: '1',
+        }
     },
     created() {
     },

@@ -14,8 +14,6 @@ icons
     min-height: 60px;
 
     background-color: #212121;
-    position: absolute;
-    top: 0;
     width: 100%;
 
 }
@@ -39,7 +37,8 @@ icons
 
 .main-container {
     margin: 0 auto;
-    max-width: 1200px;
+    max-width: 1260px;
+    padding: 0 30px;
 }
 
 .el-menu-item {
