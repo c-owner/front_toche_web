@@ -1,11 +1,11 @@
 <template>
     <div id="app">
         <div class="container">
-            <el-header class="text-white" height="auto" style="min-width: 355px;">
+            <div class="header-container">
                 <UiGnb />
-            </el-header>
+            </div>
             <div class="main-container">
-                <div class="pt30 pb30 center-block text-center">
+                <div class="center-block text-center">
                     <Nuxt/>
                 </div>
             </div>

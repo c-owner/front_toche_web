@@ -1,27 +1,5 @@
 <template>
-    <div>
-        <el-tabs type="border-card" v-model="tabIndex">
-            <el-tab-pane :label="seasonInfo.title" disabled>
-            </el-tab-pane>
-            <el-tab-pane label="챔피언 목록">
-                <Unit />
-<!--                <Nuxt />-->
-            </el-tab-pane>
-            <el-tab-pane label="아이템 목록">
-                <Item />
-            </el-tab-pane>
-            <el-tab-pane label="추천 덱">
-                <Deck />
-            </el-tab-pane>
-            <el-tab-pane label="증강">
-                <Augment />
-            </el-tab-pane>
-            <el-tab-pane label="특성">
-                <Trait />
-            </el-tab-pane>
-
-        </el-tabs>
-
+    <div class="main-wrap">
 
     </div>
 </template>

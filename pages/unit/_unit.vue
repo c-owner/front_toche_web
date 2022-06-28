@@ -16,8 +16,7 @@
                     </li>
                 </ul>
             </el-tab-pane>
-            <el-tab-pane label="아이템 목록">
-
+            <el-tab-pane label="아이템 목록" @tab-click="tabClick">
             </el-tab-pane>
             <el-tab-pane label="추천 덱">
 
@@ -61,6 +60,13 @@ export default {
         }
     },
     methods: {
+        tabClick(e) {
+            console.log("------", e)
+        },
+
+        movePage(url) {
+            this.$router.push(url);
+        },
         getUnit() {
             let seasonId;
             if (this.seasonInfo.hasOwnProperty('id')) {

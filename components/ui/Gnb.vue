@@ -1,7 +1,8 @@
 <template>
-    <div class="header side-center">
-        <div class="text-left cursor" @click="$router.push('/')">
-            <img src="@/assets/images/toche-Logo-512.png" alt="logo" width="80"/>
+    <div class="header flex align-center pl30 pr30" style="justify-content: space-evenly">
+        <div class="text-left cursor logo_box mr30" @click="$router.push('/')">
+            <img src="@/assets/images/toche-Logo-512.png" alt="logo" width="80px"/>
+            <strong class="text-white">TFT 초심자 가이드</strong>
         </div>
         <div>
             <el-menu
@@ -14,16 +15,18 @@
                 active-text-color="#ffd04b">
                 <el-menu-item index="guide">덱 가이드</el-menu-item>
 
+
+                <!--
                 <el-submenu v-if="$store.getters['seasons']"
                     :hide-timeout="500"
                     popper-class="seasons-menu"
                     index="season">
                     <template slot="title">{{ $store.state.seasonInfo.title }}</template>
                     <el-menu-item v-for="(season, s_idx) in seasons" :index="season.num.toString()"
-                                  :key="season.id">
+                                  :key="season.s_dix">
                         {{ season.title }}
                     </el-menu-item>
-                </el-submenu>
+                </el-submenu>-->
 
                 <el-menu-item index="unit">챔피언</el-menu-item>
                 <el-menu-item index="item">아이템</el-menu-item>
@@ -32,8 +35,16 @@
                 <el-menu-item index="trait">특성</el-menu-item>
             </el-menu>
         </div>
-        <div class="none_item"></div>
-
+        <el-dropdown class="mr30" @change="selectSeason">
+            <el-button type="primary" @click="selectSeason">
+                시즌 {{ currentSeason }}<i class="el-icon-arrow-down el-icon--right"></i>
+            </el-button>
+            <el-dropdown-menu slot="dropdown">
+                <el-dropdown-item v-for="(season, s_idx) in seasons"
+                                  :key="season.id">{{ season.title }}</el-dropdown-item>
+            </el-dropdown-menu>
+        </el-dropdown>
+<!--        <div class="none_item"></div>-->
     </div>
 </template>
 
@@ -115,6 +126,9 @@ export default {
 
             this.$store.commit('setSeasonInfo', seasonInfo);
             this.$store.commit('setCurrentSeason', this.currentSeason);
+
+        },
+        selectSeason() {
 
         },
     },
