@@ -9,9 +9,9 @@ icons
 
 */
 
-// 헤더
+// 헤더 컨테이너 css
 .el-header {
-    min-height: 60px;
+    min-height: 80px;
 
     background-color: #212121;
     width: 100%;
@@ -23,8 +23,40 @@ icons
 }
 
 .header {
+    min-height: 80px;
+    background-color: #212121;
+    .logo_box {
+        img { vertical-align: middle; }
+        strong {
+            vertical-align: middle;
+            white-space: nowrap;
+            word-break: keep-all;
+            font-size: 18px;
+        }
+    }
 }
 
+.el-menu {
+    height: 82px;
+}
+.el-menu--horizontal>.el-menu-item {
+    height: auto;
+    line-height: 82px;
+}
+
+.el-menu-item {
+    min-height: 81px;
+}
+.el-submenu__title {
+    min-height: 81px;
+}
+.el-menu--horizontal .el-menu .el-menu-item {
+    min-height: auto !important;
+    text-align: center;
+    width: 100px;
+}
+
+/* 메인 컨테이너 css */
 .el-main {
     padding-top: 81px;
 }
@@ -39,18 +71,8 @@ icons
     margin: 0 auto;
     max-width: 1260px;
     padding: 0 30px;
-}
 
-.el-menu-item {
-    min-height: 81px;
-}
-.el-submenu__title {
-    min-height: 81px;
-}
-.el-menu--horizontal .el-menu .el-menu-item {
-    min-height: auto !important;
-    text-align: center;
-    width: 100px;
+    min-height: calc(100vh - 84px);
 }
 
 .seasons-menu {
@@ -76,6 +98,9 @@ icons
     }
 }
 
+.el-tabs__nav {
+    float: unset !important;
+}
 .el-tabs__content {
     overflow: unset !important;
     position: unset !important;
@@ -85,4 +110,33 @@ icons
     max-width: 1000px;
     margin: 0 auto;
     text-align: center;
+}
+
+
+// 버튼
+
+.el-button--primary,
+.el-button--primary:focus,
+.el-button--primary:hover, {
+    color: #222;
+    background-color: #FFD04b;
+    border-color: #FFD04b;
+    &:hover, &:focus {
+        background-color: #FFD267FF;
+        border-color: #FFD267FF;
+    }
+
+}
+.el-tabs--border-card>.el-tabs__header {
+    background-color: #FFD04b;
+    color: #212121;
+}
+.el-tabs--border-card>.el-tabs__header .el-tabs__item {
+    color: #212121;
+}
+.el-tabs--border-card>.el-tabs__header .el-tabs__item.is-disabled {
+    color: #777777;
+}
+.el-tabs--border-card>.el-tabs__header .el-tabs__item.is-active {
+    color: #212121;
 }
