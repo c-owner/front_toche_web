@@ -11,6 +11,7 @@ export const state = () => ({
     },
     seasonList: [],
     unitList: [],
+    unitDetail: {},
 })
 
 
@@ -28,7 +29,11 @@ export const mutations = {
 
     setUnitList(state, data) {
         state.unitList = data;
-    }
+    },
+
+    setUnitDetail(state, data) {
+        state.unitDetail = data;
+    },
 }
 
 
@@ -46,7 +51,9 @@ export const getters = {
 
     units: (state) => {
         return state.unitList || [];
-    }
+    },
+
+    unitDetail: state => state.unitDetail,
 }
 
 
@@ -65,6 +72,14 @@ export const actions = {
         }).catch((err) => {
             console.log(err)
         });
+    },
+
+    async getUnitDetail(store, params) {
+        return await axios.get(api_url + '/units/' + params.unitId).then(({data}) => {
+            return data;
+        }).catch((err) => {
+            console.log(err)
+        })
     },
 
 }

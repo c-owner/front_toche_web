@@ -108,7 +108,7 @@ export default {
             }
             if (key === 'guide') {
                 this.$store.commit('setCurrentSeason', this.currentSeason);
-                this.$router.push('/' + key + '/' + this.currentSeason)
+                this.$router.push('/' + this.currentSeason + '/' + key);
                 return;
             }
             if (keyPath.length > 1) {
@@ -116,7 +116,7 @@ export default {
                 this.$store.commit('setCurrentSeason', this.currentSeason);
                 // this.$router.push('/seasons/' + key);
             } else {
-                this.$router.push('/' + key + '/' + this.currentSeason);
+                this.$router.push('/' + this.currentSeason + '/' + key);
             }
             let seasonInfo = this.$store.state.seasonList.filter(res => {
                 if (res.num === Number(this.currentSeason)) {
