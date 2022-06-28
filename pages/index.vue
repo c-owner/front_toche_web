@@ -15,6 +15,7 @@ export default {
     created() {
     },
     mounted() {
+
         if (this.seasonInfo) {
             this.getUnit()
         }

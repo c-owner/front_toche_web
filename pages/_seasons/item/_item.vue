@@ -1,43 +1,13 @@
 <template>
     <div>
-        <el-tabs type="border-card" v-model="tabIndex">
-            <el-tab-pane :label="seasonInfo.title" disabled >
-
-            </el-tab-pane>
-            <el-tab-pane label="챔피언 목록">
-                <ul>
-                    <li v-for="(unit, u_idx) in $store.state.unitList" :key="unit.id" class="unit-list">
-                        <div class="unit-box">
-                            <div class="unit-img-box">
-                                <img src="~/assets/images/favicon.png" :src="unit.iconPath" alt="챔피언 이미지">
-                            </div>
-                            <div class="unit_name">{{ unit.krName }}</div>
-                        </div>
-                    </li>
-                </ul>
-            </el-tab-pane>
-            <el-tab-pane label="아이템 목록">
-
-            </el-tab-pane>
-            <el-tab-pane label="추천 덱">
-
-            </el-tab-pane>
-            <el-tab-pane label="증강">
-
-            </el-tab-pane>
-            <el-tab-pane label="특성">
-
-            </el-tab-pane>
-
-        </el-tabs>
-
-
+        
     </div>
 </template>
 
 <script>
 export default {
     name: "Item",
+    // todo:: tab content layout형식으로 ..
     data() {
         return {
             tabIndex: '2',
