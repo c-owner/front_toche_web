@@ -5,10 +5,9 @@ Frontend Develoepr : corner,
 Backend Developer : heekng, 
 ```
 ## Usage Skill || Stack
-- React
-  - Ant Design
+- NuxtJS 
 
-- Java Spring
+- Spring 
 
 
 [Connect ::👉 Frontend Temporary Web Server](https://front-toche-web.vercel.app/)
