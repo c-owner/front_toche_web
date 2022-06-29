@@ -25,7 +25,7 @@
     cursor: pointer;
     .unit-img-box {
 
-        img {
+        img, .unit_img_box {
             width: 40px;
             height: 40px;
             border-radius: 5px;
@@ -56,6 +56,39 @@
         background-size: 100%;
         background-repeat: no-repeat;
         background-position: center -100px;
+        .over_text {
+            top: 25%;
+        }
     }
 
+    .unit_content_wrap {
+
+        .unit_status {
+            background-color: #e5e5e5;
+            .status_box {
+                display: inline-block;
+                .status_title {
+                    font-size: 12px;
+                    font-weight: 500;
+                    color: #78828C;
+                }
+                .status_value {
+                    font-size: 12px;
+                    color: #333333;
+                }
+            }
+        }
+
+        .unit_ability_info {
+            background-color: #e5e5e5;
+        }
+
+    }
+
+}
+.unit_img_box {
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }

@@ -1,6 +1,6 @@
 <template>
     <div v-if="!loading"
-        class="w100p flex unit_wrap">
+         class="w100p flex unit_wrap">
         <div class="lnb">
             <ul>
                 <li v-for="(unit, u_idx) in units" :key="unit.id" class="unit-list">
@@ -16,15 +16,31 @@
         <!--        상세 -->
         <div class="main-wrap">
             <div class="unit_top_banner p-relative" :style="`background-image: url(${unitDetail.iconPath})`">
-                <div class="p-absoulte w100p">
+                <div class="p-absoulte w100p over_text">
                     <strong class="text-white">{{ unitDetail.krName }}</strong>
                 </div>
+            </div>
+            <div class="unit_content_wrap">
+                <div class="unit_status">
+                    <div class="status_box">
+                        <div class="status_title">체력</div>
+                        <div class="status_value">{{ unitDetail.stats.hp }}</div>
+                    </div>
+                    <div class="status_box">
+                        <div class="status_title">공격력</div>
+                        <div class="status_value">{{ unitDetail.stats.attack }}</div>
+                    </div>
+                </div>
+               <div class="unit_ability_info">
+                   <img class="unit_img_box" :src="unitDetail.ability.iconPath" width="45" height="45" alt="챔피언 특성 이미지" />
+               </div>
+
             </div>
         </div>
 
     </div>
     <div v-else>
-        <Loading />
+        <Loading/>
     </div>
 </template>
 
