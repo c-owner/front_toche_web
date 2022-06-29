@@ -13,7 +13,7 @@
             </ul>
         </div>
         <!--        상세 -->
-        <div class="main-wrap p-relative" v-if="!loading">
+        <div class="main-wrap p-relative pb80" v-if="!loading">
             <div class="p-relative w100p flex"
                  style="z-index: 1; background-color: #212121;">
                 <div class="unit_top_banner p-relative" :style="`background-image: url(${unitDetail.iconPath})`">
@@ -37,12 +37,6 @@
                         <span class="large-text" style="color: #222222">{{ unitDetail.krName }}</span>(이)가 자주 사용한 아이템
                     </strong>
                     <UnitMostItem :mostItem="mostItem" />
-                </div>
-                <div class="text-left pl16 pr16 pt35">
-                    <strong class="fs16">
-                        <span class="large-text" style="color: #222222">{{ unitDetail.krName }}</span> 특성
-                    </strong>
-
                 </div>
             </div>
         </div>
