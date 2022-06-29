@@ -2,6 +2,7 @@
     width: 100%;
     display: flex;
     flex-wrap: wrap;
+    min-width: 1180px;
 }
 
 // lnb
@@ -165,5 +166,22 @@
             font-size: 12px;
             color: #e4bebefb;
         }
+    }
+}
+
+.item {
+    top: -3px;
+    position: absolute;
+    .el-badge__content {
+        font-size: 8px;
+        line-height: 11px;
+        height: 11px;
+        padding: 0 2px;
+    }
+
+}
+.most_list {
+    .el-popover {
+        position: unset !important;
     }
 }

@@ -31,7 +31,7 @@
             </div>
             <div class="unit_content_wrap p-relative">
                 <UnitAbility :ability="unitDetail.ability" />
-                <div class="text-left pl16 pr16">
+                <div class="text-left pl16 pr16 pt35">
                     <strong class="fs16">
                         <span class="large-text" style="color: #222222">{{ unitDetail.krName }}</span>(이)가 자주 사용한 아이템
                     </strong>
