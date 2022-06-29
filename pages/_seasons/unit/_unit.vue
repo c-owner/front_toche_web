@@ -13,26 +13,31 @@
             </ul>
         </div>
         <!--        상세 -->
-        <div class="main-wrap" v-if="!loading">
-            <div class="unit_top_banner p-relative" :style="`background-image: url(${unitDetail.iconPath})`">
-                <div class="p-absoulte w100p over_text">
-                    <strong class="text-white">{{ unitDetail.krName }}</strong>
-                </div>
-            </div>
-            <div class="unit_content_wrap">
-                <div class="in_block">
-                    <img class="cost_img" src="~/assets/images/icon/cost_icon.png" alt="cost" width="48" />
-                    <span class="cost_value">${{ unitDetail.cost }}</span>
+        <div class="main-wrap p-relative" v-if="!loading">
+            <div class="p-relative w100p flex"
+                 style="z-index: 1; background-color: #212121; border-radius: 15px;">
+                <div class="unit_top_banner p-relative" :style="`background-image: url(${unitDetail.iconPath})`">
+                    <div class="p-absoulte w100p over_text">
+                        <strong class="text-white unit_banner_name">{{ unitDetail.krName }}</strong>
+                    </div>
+                    <div class="p-absoulte cost_wrap">
+                        <img class="in_block cost_img" src="~/assets/images/icon/cost_icon.png" alt="cost" />
+                        <div class="in_block cost_value">
+                            <span>{{ unitDetail.cost }}</span>
+                        </div>
+                    </div>
                 </div>
                 <UnitStats :stats="unitDetail.stats" />
+            </div>
+            <div class="unit_content_wrap p-relative">
                 <UnitAbility :ability="unitDetail.ability" />
 
             </div>
         </div>
-
-        <div v-else>
+        <div style="width: 100%;position: absolute;top: 50%;" v-if="loading">
             <Loading />
         </div>
+
 
     </div>
 </template>
