@@ -4,7 +4,7 @@
             <div class="unit_img_box trait_box in_block cursor"
                  :style="`background-image: url(${trait.iconPath})`">
             </div>
-            <div class="in_block pl14 bold cursor">{{ trait.krName }}</div>
+            <div class="in_block pl14 bold cursor theme-text-color ellipsis" style="width: 130px;">{{ trait.krName }}</div>
         </div>
     </div>
 </template>

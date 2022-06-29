@@ -16,9 +16,6 @@ icons
     background-color: #FFD04b;
 }
 
-.header-container {
-    min-width: 1180px;
-}
 // 헤더 컨테이너 css
 .el-header {
     min-height: 80px;
@@ -33,6 +30,7 @@ icons
 }
 
 .header {
+    min-width: 1180px;
     min-height: 80px;
     background-color: #212121;
     .logo_box {

@@ -824,3 +824,11 @@
 .lh-2rem {line-height: 2rem;}
 
 .word-keep {word-break: keep-all;}
+
+.ellipsis {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: block;
+    width: 100px;
+}

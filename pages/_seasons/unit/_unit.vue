@@ -28,6 +28,7 @@
                     </div>
                 </div>
                 <UnitStats :stats="unitDetail.stats" />
+                <UnitTraits :traits="unitDetail.traits" />
             </div>
             <div class="unit_content_wrap p-relative">
                 <UnitAbility :ability="unitDetail.ability" />
@@ -41,7 +42,7 @@
                     <strong class="fs16">
                         <span class="large-text" style="color: #222222">{{ unitDetail.krName }}</span> 특성
                     </strong>
-                    <UnitTraits :traits="unitDetail.traits" />
+
                 </div>
             </div>
         </div>

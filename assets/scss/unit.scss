@@ -80,9 +80,11 @@
         background-repeat: no-repeat;
         background-position: center;
         display: block;
-        border-radius: 15px;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 15px;
+        border-bottom-left-radius: 0;
         box-shadow: 19px 15px 25px rgba(0, 0, 0, 0.2);
-        margin: 15px 50px;
         .over_text {
             bottom: 10px;
             .unit_banner_name {
@@ -102,7 +104,10 @@
             width: 50%;
             background-color: #22222270;
             color: #FFD04b;
-            border-radius: 15px 0px 15px 0px;
+            border-top-left-radius: 0;
+            border-top-right-radius: 0px;
+            border-bottom-right-radius: 15px;
+            border-bottom-left-radius: 0;
         }
         .cost_img {
             width: 20px;
