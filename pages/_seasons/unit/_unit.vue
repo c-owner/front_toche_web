@@ -1,10 +1,9 @@
 <template>
-    <div v-if="!loading"
-         class="w100p flex unit_wrap">
+    <div class="w100p flex unit_wrap">
         <div class="lnb">
             <ul>
                 <li v-for="(unit, u_idx) in units" :key="unit.id" class="unit-list">
-                    <div class="unit-box">
+                    <div class="unit-box" @click="getUnitDetail(unit.id)">
                         <div class="unit-img-box">
                             <img src="~/assets/images/favicon.png" :src="unit.iconPath" alt="챔피언 이미지">
                         </div>
@@ -14,33 +13,27 @@
             </ul>
         </div>
         <!--        상세 -->
-        <div class="main-wrap">
+        <div class="main-wrap" v-if="!loading">
             <div class="unit_top_banner p-relative" :style="`background-image: url(${unitDetail.iconPath})`">
                 <div class="p-absoulte w100p over_text">
                     <strong class="text-white">{{ unitDetail.krName }}</strong>
                 </div>
             </div>
             <div class="unit_content_wrap">
-                <div class="unit_status">
-                    <div class="status_box">
-                        <div class="status_title">체력</div>
-                        <div class="status_value">{{ unitDetail.stats.hp }}</div>
-                    </div>
-                    <div class="status_box">
-                        <div class="status_title">공격력</div>
-                        <div class="status_value">{{ unitDetail.stats.attack }}</div>
-                    </div>
+                <div class="in_block">
+                    <img class="cost_img" src="~/assets/images/icon/cost_icon.png" alt="cost" width="48" />
+                    <span class="cost_value">${{ unitDetail.cost }}</span>
                 </div>
-               <div class="unit_ability_info">
-                   <img class="unit_img_box" :src="unitDetail.ability.iconPath" width="45" height="45" alt="챔피언 특성 이미지" />
-               </div>
+                <UnitStats :stats="unitDetail.stats" />
+                <UnitAbility :ability="unitDetail.ability" />
 
             </div>
         </div>
 
-    </div>
-    <div v-else>
-        <Loading/>
+        <div v-else>
+            <Loading />
+        </div>
+
     </div>
 </template>
 
@@ -92,13 +85,17 @@ export default {
             } catch (e) {
                 console.log(e)
             }
-
             await this.getUnitDetail();
         },
-        async getUnitDetail() {
+        async getUnitDetail(id) {
+            this.loading = true;
             let params = {};
-            if (this.units.length > 0) {
-                params.unitId = this.units[0].id.toString();
+            if (id != null && id != undefined) {
+                params.unitId = id;
+            } else {
+                if (this.units.length > 0) {
+                    params.unitId = this.units[0].id.toString();
+                }
             }
             let data = await this.$store.dispatch('getUnitDetail', params);
             this.$store.commit('setUnitDetail', data);
