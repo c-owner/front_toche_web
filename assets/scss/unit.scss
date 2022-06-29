@@ -62,11 +62,22 @@
     }
 
     .unit_content_wrap {
-
+        .cost_img {
+        }
+        .cost_value {
+            font-size: 11px;
+            font-weight: 500;
+            background-color: #222222;
+            color: #FFD04b;
+            border-radius: 50%;
+            padding: 3px;
+        }
         .unit_status {
             background-color: #e5e5e5;
+            min-height: 50px;
             .status_box {
                 display: inline-block;
+                padding: 15px;
                 .status_title {
                     font-size: 12px;
                     font-weight: 500;
@@ -80,7 +91,23 @@
         }
 
         .unit_ability_info {
-            background-color: #e5e5e5;
+            background-color: #606266;
+            text-align: left;
+            padding: 20px 16px;
+            color: #ffffff;
+            display: flex;
+            .ability_title {
+                display: inline-block;
+                vertical-align: top;
+                padding-left: 16px;
+                font-size: 14px;
+            }
+            .ability_desc {
+                font-size: 12px;
+                padding-top: 8px;
+                word-break: keep-all;
+
+            }
         }
 
     }
