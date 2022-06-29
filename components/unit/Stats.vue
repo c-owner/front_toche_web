@@ -10,7 +10,7 @@
         </div>
         <div class="status_box">
             <div class="status_title">마나</div>
-            <div class="status_value">{{ stats.initialMana}} / {{ stats.mana }}</div>
+            <div class="status_value">{{ stats.initialMana }} / {{ stats.mana }}</div>
         </div>
         <div class="status_box">
             <div class="status_title">DPS</div>
@@ -38,7 +38,12 @@
 <script>
 export default {
     name: "Stats",
-    props: ['stats']
+    props: ['stats'],
+    data() {
+        return {
+            progress_width: 25,
+        };
+    },
 }
 </script>
 
