@@ -6,9 +6,17 @@
 
 // lnb
 .lnb {
+    &::-webkit-scrollbar {
+        display: none; /* Chrome, Safari, Opera*/
+    },
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+
     //width: 25%;
     width: 245px;
+    max-height: 600px;
 }
+
 
 .unit-list {
     display: inline-block;
