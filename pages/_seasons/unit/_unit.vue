@@ -102,6 +102,7 @@ export default {
             await this.getUnitDetail();
         },
         async getUnitDetail(id) {
+            this.loading = true;
             let params = {};
             if (id != null && id != undefined) {
                 params.unitId = id;
