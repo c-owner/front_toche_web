@@ -7,8 +7,8 @@ import {api_url} from "~/plugins/api/config";
 
 export const state = () => ({
 
-    seasonInfo: {
-    },
+    currentSeason: '14',
+    seasonInfo: {},
     seasonList: [],
     unitList: [],
     unitDetail: {},
@@ -21,7 +21,7 @@ export const mutations = {
         state.seasonInfo = data;
     },
     setCurrentSeason(state, data) {
-        state.seasonInfo.currentSeason = data;
+        state.currentSeason = data;
     },
 
     setSeasonList(state, data) {
@@ -46,7 +46,7 @@ export const getters = {
     seasonInfo: state => state.seasonInfo,
 
     currentSeason: (state) => {
-        return state.seasonInfo.currentSeason || '';
+        return state => state.currentSeason || '';
     },
 
     seasons: (state) => {

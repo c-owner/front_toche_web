@@ -82,14 +82,13 @@
         display: block;
         border-top-left-radius: 0;
         border-top-right-radius: 0;
-        border-bottom-right-radius: 15px;
+        border-bottom-right-radius: 0;
         border-bottom-left-radius: 0;
         box-shadow: 19px 15px 25px rgba(0, 0, 0, 0.2);
         .over_text {
             bottom: 10px;
             .unit_banner_name {
                 background-color: #22222273;
-                border-radius: 5px;
                 padding: 0 5px;
 
                 text-overflow: ellipsis;

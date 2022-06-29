@@ -15,19 +15,6 @@
                 active-text-color="#ffd04b">
                 <el-menu-item index="guide">덱 가이드</el-menu-item>
 
-
-                <!--
-                <el-submenu v-if="$store.getters['seasons']"
-                    :hide-timeout="500"
-                    popper-class="seasons-menu"
-                    index="season">
-                    <template slot="title">{{ $store.state.seasonInfo.title }}</template>
-                    <el-menu-item v-for="(season, s_idx) in seasons" :index="season.num.toString()"
-                                  :key="season.s_dix">
-                        {{ season.title }}
-                    </el-menu-item>
-                </el-submenu>-->
-
                 <el-menu-item index="unit">챔피언</el-menu-item>
                 <el-menu-item index="item">아이템</el-menu-item>
                 <el-menu-item index="deck">추천 덱</el-menu-item>
@@ -35,16 +22,14 @@
                 <el-menu-item index="trait">특성</el-menu-item>
             </el-menu>
         </div>
-        <el-dropdown class="mr30" @change="selectSeason">
-            <el-button type="primary" @click="selectSeason">
-                시즌 {{ currentSeason }}<i class="el-icon-arrow-down el-icon--right"></i>
-            </el-button>
-            <el-dropdown-menu slot="dropdown">
-                <el-dropdown-item v-for="(season, s_idx) in seasons"
-                                  :key="season.id">{{ season.title }}</el-dropdown-item>
-            </el-dropdown-menu>
-        </el-dropdown>
-<!--        <div class="none_item"></div>-->
+        <el-select class="mr30" tyle="primary" @input="selectSeason"
+                   :placeholder="'시즌' + currentSeason"
+                   v-model="currentSeason">
+            <el-option v-for="(season, s_idx) in seasons" :value="season.id.toString()"
+                              :key="season.id" :label="season.title">
+            </el-option>
+        </el-select>
+        <!--        <div class="none_item"></div>-->
     </div>
 </template>
 
@@ -53,7 +38,7 @@ export default {
     name: "Gnb",
     data() {
         return {
-            currentSeason: '7',
+            currentSeason: '14',
             activeIndex: '1',
             augment: false,
             trait: false,
@@ -88,9 +73,8 @@ export default {
                         return res;
                     }
                 })[0];
-
                 this.$store.commit('setSeasonInfo', seasonInfo);
-                this.$store.commit('setCurrentSeason', this.currentSeason);
+                // this.$store.commit('setCurrentSeason', this.currentSeason);
             });
         } catch (e) {
             console.log(e);
@@ -129,7 +113,7 @@ export default {
 
         },
         selectSeason() {
-
+            this.$store.commit('setCurrentSeason', this.currentSeason);
         },
     },
 }
