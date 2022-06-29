@@ -15,7 +15,7 @@
         <!--        상세 -->
         <div class="main-wrap p-relative" v-if="!loading">
             <div class="p-relative w100p flex"
-                 style="z-index: 1; background-color: #212121; border-radius: 15px;">
+                 style="z-index: 1; background-color: #212121;">
                 <div class="unit_top_banner p-relative" :style="`background-image: url(${unitDetail.iconPath})`">
                     <div class="p-absoulte w100p over_text">
                         <strong class="text-white unit_banner_name">{{ unitDetail.krName }}</strong>
@@ -31,7 +31,12 @@
             </div>
             <div class="unit_content_wrap p-relative">
                 <UnitAbility :ability="unitDetail.ability" />
-
+                <div class="text-left pl16 pr16">
+                    <strong class="fs16">
+                        <span class="large-text" style="color: #222222">{{ unitDetail.krName }}</span>(이)가 자주 사용한 아이템
+                    </strong>
+                    <UnitMostItem :mostItem="mostItem" />
+                </div>
             </div>
         </div>
         <div style="width: 100%;position: absolute;top: 50%;" v-if="loading">
@@ -67,12 +72,16 @@ export default {
         unitDetail() {
             return this.$store.getters['unitDetail']
         },
+        mostItem() {
+            return this.$store.getters['mostItem']
+        },
     },
     methods: {
         movePage(url) {
             this.$router.push(url);
         },
         async getUnit() {
+            this.loading = true;
             let seasonId;
             if (this.seasonInfo.hasOwnProperty('id')) {
                 seasonId = this.seasonInfo.id;
@@ -93,7 +102,6 @@ export default {
             await this.getUnitDetail();
         },
         async getUnitDetail(id) {
-            this.loading = true;
             let params = {};
             if (id != null && id != undefined) {
                 params.unitId = id;
@@ -103,8 +111,14 @@ export default {
                 }
             }
             let data = await this.$store.dispatch('getUnitDetail', params);
-            this.$store.commit('setUnitDetail', data);
+            await this.$store.commit('setUnitDetail', data);
 
+            await this.getUnitMostItem(params);
+
+        },
+        async getUnitMostItem(params) {
+            let data = await this.$store.dispatch('getUnitMostItem', params);
+            await this.$store.commit('setMostItem', data);
             this.loading = false;
         },
 
