@@ -24,6 +24,12 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
+.lnb_unit_box {
+    .el-badge__content {
+        background-color: #222222;
+        color: #FFD04b;
+    }
+}
 
 .unit-list {
     display: inline-block;
@@ -184,4 +190,11 @@
     .el-popover {
         position: unset !important;
     }
+}
+
+.trait_box {
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-color: #FFD04b;
 }

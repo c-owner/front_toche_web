@@ -4,8 +4,8 @@
             <ul>
                 <li v-for="(unit, u_idx) in units" :key="unit.id" class="unit-list">
                     <div class="unit-box" @click="getUnitDetail(unit.id)">
-                        <div class="unit-img-box">
-                            <img src="~/assets/images/favicon.png" :src="unit.iconPath" alt="챔피언 이미지">
+                        <div class="unit_img_box p-relative" :style="`background: url(${unit.iconPath}) center / contain`">
+                            <el-badge :value="unit.cost" class="item p-absoulte lnb_unit_box" style="left: 3px;"></el-badge>
                         </div>
                         <div class="unit_name">{{ unit.krName }}</div>
                     </div>
@@ -36,6 +36,12 @@
                         <span class="large-text" style="color: #222222">{{ unitDetail.krName }}</span>(이)가 자주 사용한 아이템
                     </strong>
                     <UnitMostItem :mostItem="mostItem" />
+                </div>
+                <div class="text-left pl16 pr16 pt35">
+                    <strong class="fs16">
+                        <span class="large-text" style="color: #222222">{{ unitDetail.krName }}</span> 특성
+                    </strong>
+                    <UnitTraits :traits="unitDetail.traits" />
                 </div>
             </div>
         </div>
