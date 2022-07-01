@@ -2,12 +2,9 @@
 
 ```
 Frontend Develoepr : corner,
-Backend Developer : heekng, 
 ```
-## Usage Skill || Stack
+## Usage
 - NuxtJS 
-
-- Spring 
 
 
 [Connect ::👉 Frontend Temporary Web Server](https://front-toche-web.vercel.app/)
