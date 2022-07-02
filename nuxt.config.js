@@ -1,4 +1,4 @@
-const isDev = true;
+const isDev = false;
 const getConfig = () => {
     return isDev ? '3000' : '80';
 }
