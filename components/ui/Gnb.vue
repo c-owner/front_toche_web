@@ -82,7 +82,6 @@ export default {
                     }
                 })[0];
                 this.$store.commit('setSeasonInfo', seasonInfo);
-                console.log("---------!")
                 this.on_load = true;
                 // this.$store.commit('setCurrentSeason', this.currentSeason);
             });

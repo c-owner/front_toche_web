@@ -29,7 +29,7 @@
                 </div>
             </div>
         </div>
-        <div style="width: 100%;position: absolute;top: 50%;" v-if="loading">
+        <div v-if="loading">
             <Loading/>
         </div>
 

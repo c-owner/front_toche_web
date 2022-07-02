@@ -13,6 +13,8 @@ export const state = () => ({
     unitList: [],
     unitDetail: {},
     mostItem: [],
+    itemList: [],
+    itemDetail: {},
 })
 
 
@@ -38,6 +40,12 @@ export const mutations = {
     setMostItem(state, data) {
         state.mostItem = data || [];
     },
+    setItemList(state, data) {
+        state.itemList = data || [];
+    },
+    setItemDetail(state, data) {
+        state.itemDetail = data || {};
+    },
 }
 
 
@@ -49,7 +57,11 @@ export const getters = {
     units: state => state.unitList || [],
     unitDetail: state => state.unitDetail || [],
     mostItem: state => state.mostItem || [],
+    itemList: state => state.itemList || [],
+    itemDetail: state => state.itemDetail || {},
+
 }
+
 
 
 export const actions = {
@@ -87,6 +99,14 @@ export const actions = {
 
     async getItemList(store, params) {
         return await axios.get(api_url + '/items', {params}).then(({data}) => {
+            return data;
+        }).catch((err) => {
+            console.log(err)
+        });
+    },
+
+    async getItemDetail(store, params) {
+        return await axios.get(api_url + '/items/' + params.itemId).then(({data}) => {
             return data;
         }).catch((err) => {
             console.log(err)
