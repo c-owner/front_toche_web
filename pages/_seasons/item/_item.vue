@@ -1,6 +1,6 @@
 <template>
     <div class="w100p flex unit_wrap">
-        <UiLnb :items="itemList" @getItemDetail="getItemDetail" />
+        <UiLnb :items="itemList" @getItemDetail="getItemDetail"/>
         <div class="main-wrap p-relative pb80" v-if="on_load">
             <div class="p-relative w100p flex align-center"
                  style="z-index: 1; background-color: #212121;">
@@ -10,16 +10,18 @@
                     </div>
                 </div>
                 <div class="text-white desc pa30 word-keep"
-                     style="width: calc(100% - 260px); line-height: 1.2"  v-html="itemDetail.desc">
+                     style="width: calc(100% - 260px); line-height: 1.2" v-html="itemDetail.desc">
                 </div>
             </div>
-            <div class="unit_content_wrap p-relative">
+            <div class="unit_content_wrap p-relative"
+                 v-if="has_obj_empty(itemDetail.fromItem1) && has_obj_empty(itemDetail.fromItem2)"
+            >
                 <div class="text-left pl16 pr16 pt35">
                     <strong class="fs16">
                         <span class="large-text" style="color: #222222">조합</span>
                     </strong>
                 </div>
-                <ItemCombi :item1="itemDetail.fromItem1" :item2="itemDetail.fromItem2" />
+                <ItemCombi :item1="itemDetail.fromItem1" :item2="itemDetail.fromItem2"/>
             </div>
         </div>
         <div v-if="!on_load">
@@ -55,6 +57,11 @@ export default {
         },
     },
     methods: {
+        has_obj_empty(obj) {
+            for(let key in obj) {
+                return obj[key] ? true : false;
+            }
+        },
         async getItemList() {
             this.on_load = false;
             let params = {
