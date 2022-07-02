@@ -97,7 +97,7 @@
             <br/>
             <h3 class="mb30">죄송합니다. 찾으시는 페이지를 찾을 수 없습니다. 아래 버튼을 눌러 돌아가실 수 있습니다.</h3>
 
-            <el-button type="primary" class="cursor" @click="$router.push('/')"> 돌아가기 </el-button>
+            <el-button type="primary" class="cursor" @click="$router.back()"> 돌아가기 </el-button>
         </div>
     </div>
 </template>

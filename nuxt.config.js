@@ -53,5 +53,5 @@ export default {
     },
     proxy: {
         '/api/v1': { target: 'https://tocheapi.heekng.com', pathRewrite: { '^/api/v1': '' } },
-    }
+    },
 }

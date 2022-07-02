@@ -1,5 +1,5 @@
 <template>
-    <div style="height: 30vh">
+    <div class="load_compo">
         <div v-loading="loading"></div>
     </div>
 </template>
@@ -20,11 +20,24 @@ export default {
     beforeDestroy() {
     },
     methods: {
+        start() {
+            this.loading = true
+        },
+        finish() {
+            this.loading = false
+        },
     }
 
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+
+.load_compo {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    left: 0;
+}
 
 </style>

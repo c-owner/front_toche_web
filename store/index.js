@@ -18,48 +18,37 @@ export const state = () => ({
 
 export const mutations = {
     setSeasonInfo(state, data) {
-        state.seasonInfo = data;
+        state.seasonInfo = data || {};
     },
     setCurrentSeason(state, data) {
-        state.currentSeason = data;
+        state.currentSeason = data || '';
     },
 
     setSeasonList(state, data) {
-        state.seasonList = data;
+        state.seasonList = data || [];
     },
 
     setUnitList(state, data) {
-        state.unitList = data;
+        state.unitList = data || [];
     },
 
     setUnitDetail(state, data) {
-        state.unitDetail = data;
+        state.unitDetail = data || {};
     },
     setMostItem(state, data) {
-        state.mostItem = data;
+        state.mostItem = data || [];
     },
 }
 
 
 export const getters = {
 
-    seasonInfo: state => state.seasonInfo,
-
-    currentSeason: (state) => {
-        return state => state.currentSeason || '';
-    },
-
-    seasons: (state) => {
-        return state.seasonList || [];
-    },
-
-    units: (state) => {
-        return state.unitList || [];
-    },
-
+    seasonInfo: state => state.seasonInfo || {},
+    currentSeason: state => state.currentSeason || '',
+    seasons: state => state.seasonList || [],
+    units: state => state.unitList || [],
     unitDetail: state => state.unitDetail || [],
     mostItem: state => state.mostItem || [],
-
 }
 
 

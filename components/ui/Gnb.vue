@@ -1,5 +1,7 @@
 <template>
-    <div class="header flex align-center pl30 pr30" style="justify-content: space-evenly">
+    <div class="header flex align-center pl30 pr30" style="justify-content: space-evenly"
+         v-if="on_load"
+    >
         <div class="text-left cursor logo_box mr30" @click="$router.push('/')">
             <img src="@/assets/images/toche-Logo-512.png" alt="logo" width="80px"/>
             <strong class="text-white">TFT 초심자 가이드</strong>
@@ -31,22 +33,28 @@
         </el-select>
         <!--        <div class="none_item"></div>-->
     </div>
+    <div v-else>
+        <Loading />
+    </div>
 </template>
 
 <script>
 export default {
     name: "Gnb",
+    // asyncData({store, route, params, axios}) {
+    //
+    // },
     data() {
         return {
             currentSeason: '14',
             activeIndex: '1',
-            augment: false,
-            trait: false,
+            on_load: false,
         };
     },
-    async mounted() {
+    mounted() {
+        this.on_load = false;
         try {
-            await this.$store.dispatch('getSeasonList').then(res => {
+            this.$store.dispatch('getSeasonList').then(res => {
                 res.forEach((item, index) => {
                     if (item.num) {
                         item.title = "시즌" + item.num;
@@ -74,6 +82,8 @@ export default {
                     }
                 })[0];
                 this.$store.commit('setSeasonInfo', seasonInfo);
+                console.log("---------!")
+                this.on_load = true;
                 // this.$store.commit('setCurrentSeason', this.currentSeason);
             });
         } catch (e) {
@@ -87,9 +97,7 @@ export default {
     },
     methods: {
         handleSelect(key, keyPath) {
-            if (key === null) {
-                return;
-            }
+            console.log(key, keyPath)
             if (key === 'guide') {
                 this.$store.commit('setCurrentSeason', this.currentSeason);
                 this.$router.push('/' + this.currentSeason + '/' + key);
