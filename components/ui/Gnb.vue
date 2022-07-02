@@ -77,7 +77,7 @@ export default {
                 this.$store.commit('setSeasonList', res);
 
                 let seasonInfo = res.filter(res => {
-                    if (res.num === Number(this.currentSeason)) {
+                    if (res.id === Number(this.currentSeason)) {
                         return res;
                     }
                 })[0];
@@ -110,7 +110,7 @@ export default {
                 this.$router.push('/' + this.currentSeason + '/' + key);
             }
             let seasonInfo = this.$store.state.seasonList.filter(res => {
-                if (res.num === Number(this.currentSeason)) {
+                if (res.id === Number(this.currentSeason)) {
                     return res;
                 }
             })[0];
