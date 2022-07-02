@@ -1,6 +1,6 @@
 <template>
     <div class="lnb">
-        <ul>
+        <ul v-if="has_arr_empty(units)" style="max-height: 800px">
             <li v-for="(unit, u_idx) in units" :key="unit.id" class="unit-list">
                 <div class="unit-box" @click="getUnitDetail(unit.id)">
                     <div class="unit_img_box p-relative" :style="`background: url(${unit.iconPath}) center / contain`">
@@ -10,17 +10,33 @@
                 </div>
             </li>
         </ul>
+        <ul v-else-if="has_arr_empty(items)" style="max-height: 80vh">
+            <li
+                v-for="(item, index) in items" :key="item.id" class="unit-list">
+                <div class="unit-box" @click="getItemDetail(item.id)">
+                    <div class="unit_img_box p-relative" :style="`background: url(${item.iconPath}) center / contain`">
+                    </div>
+                    <div class="unit_name">{{ item.krName }}</div>
+                </div>
+            </li>
+        </ul>
     </div>
 </template>
 
 <script>
 export default {
     name: "Lnb",
-    props: ['units'],
+    props: ['units', 'items'],
     methods: {
+        has_arr_empty(arr) {
+            return Array.isArray(arr) && arr.length > 0;
+        },
         getUnitDetail(id) {
             this.$emit('getUnitDetail', id);
-        }
+        },
+        getItemDetail(id) {
+            this.$emit('getItemDetail', id);
+        },
     },
 }
 </script>

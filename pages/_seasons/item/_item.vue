@@ -1,5 +1,30 @@
 <template>
     <div class="w100p flex unit_wrap">
+        <UiLnb :items="itemList" @getItemDetail="getItemDetail" />
+        <div class="main-wrap p-relative pb80" v-if="on_load">
+            <div class="p-relative w100p flex align-center"
+                 style="z-index: 1; background-color: #212121;">
+                <div class="unit_top_banner p-relative" :style="`background-image: url(${itemDetail.iconPath})`">
+                    <div class="p-absoulte w100p over_text">
+                        <strong class="text-white unit_banner_name">{{ itemDetail.krName }}</strong>
+                    </div>
+                </div>
+                <div class="text-white desc pa30 word-keep"
+                     style="width: calc(100% - 260px); line-height: 1.2"  v-html="itemDetail.desc">
+                </div>
+            </div>
+            <div class="unit_content_wrap p-relative">
+                <div class="text-left pl16 pr16 pt35">
+                    <strong class="fs16">
+                        <span class="large-text" style="color: #222222">조합</span>
+                    </strong>
+                </div>
+                <ItemCombi :item1="itemDetail.fromItem1" :item2="itemDetail.fromItem2" />
+            </div>
+        </div>
+        <div v-if="!on_load">
+            <Loading/>
+        </div>
 
     </div>
 </template>
@@ -9,24 +34,65 @@ export default {
     name: "Item",
     data() {
         return {
-
+            on_load: false,
+            itemList: [],
         }
     },
-    created() {
-        this.getItemList();
-    },
-    mounted() {
-
-    },
-    beforeDestroy() {
+    async mounted() {
+        if (this.seasonInfo) {
+            await this.getItemList();
+        }
     },
     computed: {
+        seasonInfo() {
+            return this.$store.getters['seasonInfo'];
+        },
+        currentSeason() {
+            return this.$store.getters['currentSeason'];
+        },
+        itemDetail() {
+            return this.$store.getters['itemDetail'];
+        },
     },
     methods: {
-        getItemList() {
-            let data = this.$store.dispatch('getItemList').then((res) => {
+        async getItemList() {
+            this.on_load = false;
+            let params = {
+                seasonId: this.currentSeason,
+            }
+
+            let data = [];
+            await this.$store.dispatch('getItemList', params).then((res) => {
+                res.map((item, index) => {
+                    data.push(item);
+                });
+                this.$store.commit('setItemList', data);
                 return res;
+            }).catch((err) => {
+                console.log(err)
             });
+
+            if (data) {
+                this.itemList = data;
+            }
+
+            if (this.itemList.length > 0) {
+                await this.getItemDetail(this.itemList[9].id);
+            }
+
+        },
+        async getItemDetail(id) {
+            this.on_load = false;
+            let params = {
+                itemId: id,
+            }
+            await this.$store.dispatch('getItemDetail', params).then((res) => {
+                this.$store.commit('setItemDetail', res);
+                return res;
+            }).catch((err) => {
+                console.log(err)
+            });
+            this.on_load = true;
         },
     }
 
