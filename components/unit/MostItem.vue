@@ -1,7 +1,8 @@
 <template>
   <div class="pt35">
       <div v-for="(item, i_idx) in mostItem" :key="item.id" class="mb30 most_list">
-          <div class="mostitem_icon flex align-center p-relative">
+          <div class="mostitem_icon flex align-center p-relative cursor"
+               @click="movePage('/' + $route.params.seasons + '/item/' + item.id)">
               <div class="unit_img_box p-relative" :style="`background: url(${item.iconPath}) center / contain`">
                   <el-badge :value="item.championUsedCount" class="item p-absoulte"></el-badge>
               </div>
@@ -30,6 +31,11 @@ export default {
         return {
             visible: true,
         }
+    },
+    methods: {
+        movePage(url) {
+            this.$router.push(url);
+        },
     }
 }
 </script>
