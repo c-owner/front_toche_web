@@ -17,10 +17,10 @@
                     </div>
                 </div>
             </div>
-            <div class="unit_content_wrap p-relative"
+            <div class="unit_content_wrap p-relative pl16 pr16"
                  v-if="has_obj_empty(itemDetail.fromItem1) && has_obj_empty(itemDetail.fromItem2)"
             >
-                <div class="text-left pl16 pr16 pt35">
+                <div class="text-left pt35">
                     <strong class="fs16">
                         <span class="large-text" style="color: #222222">조합</span>
                     </strong>
