@@ -1,6 +1,16 @@
 const isDev = true;
-const getConfig = () => {
-    return isDev ? '3000' : '80';
+const config = {
+    dev: {
+        host: 'localhost',
+        port: '3000',
+    },
+    server: {
+        host: '0.0.0.0',
+        port: '80',
+    }
+}
+const getConfig = (key) => {
+    return isDev ? config[key] : config[key];
 }
 
 export default {
@@ -51,7 +61,8 @@ export default {
 
 //   server port
     server: {
-        port: getConfig(),
+        host: isDev ? getConfig('dev').host : getConfig('server').host,
+        port: isDev ? getConfig('dev').port : getConfig('server').port,
     },
     axios: {
         proxy: true,
