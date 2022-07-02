@@ -1,3 +1,8 @@
+const isDev = true;
+const getConfig = () => {
+    return isDev ? '3000' : '80';
+}
+
 export default {
     // Global page headers: https://go.nuxtjs.dev/config-head
     head: {
@@ -46,7 +51,7 @@ export default {
 
 //   server port
     server: {
-        port: 3000,
+        port: getConfig(),
     },
     axios: {
         proxy: true,
