@@ -1,6 +1,6 @@
 <template>
     <div class="w100p flex unit_wrap">
-        <UiLnb :units="units" @getUnitDetail="getUnitDetail"/>
+        <UiLnb :units="units" />
         <!--        상세 -->
         <div class="main-wrap p-relative pb80" v-if="!loading">
             <div class="p-relative w100p flex"
@@ -39,7 +39,7 @@
 
 <script>
 export default {
-    name: "Unit",
+    name: "index",
     data() {
         return {
             loading: true,
@@ -48,8 +48,13 @@ export default {
     created() {
     },
     async mounted() {
-        if (this.seasonInfo) {
+        if (!this.units === false) {
             await this.getUnit();
+        }
+        if (this.$route.params.unit) {
+            await this.getUnitDetail(this.$route.params.unit);
+        } else {
+            await this.$router.push('/' + this.$route.params.seasons + '/unit/' + this.units[0].id);
         }
     },
     computed: {
@@ -89,7 +94,7 @@ export default {
             } catch (e) {
                 console.log(e)
             }
-            await this.getUnitDetail();
+            // await this.getUnitDetail();
         },
         async getUnitDetail(id) {
             this.loading = true;

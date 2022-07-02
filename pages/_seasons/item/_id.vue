@@ -1,13 +1,13 @@
 <template>
     <div class="w100p flex unit_wrap">
-        <UiLnb :items="itemList" @getItemDetail="getItemDetail"/>
+        <UiLnb :items="itemList" />
         <div class="main-wrap p-relative pb80" v-if="on_load">
             <div class="pa30" style="z-index: 1; background-color: #212121;">
                 <div class="text-white large-text" style="display: block;">
                     <strong class="text-white unit_banner_name">{{ itemDetail.krName }}</strong>
                 </div>
-            <div class="p-relative w100p flex align-center"
-                 style="z-index: 1; background-color: #212121;">
+                <div class="p-relative w100p flex align-center"
+                     style="z-index: 1; background-color: #212121;">
                     <div class="unit_top_banner p-relative" :style="`background-image: url(${itemDetail.iconPath})`">
                         <div class="p-absoulte w100p over_text">
                         </div>
@@ -26,6 +26,12 @@
                     </strong>
                 </div>
                 <ItemCombi :item1="itemDetail.fromItem1" :item2="itemDetail.fromItem2"/>
+                <div class="text-left pt35">
+                    <strong class="fs16">
+                        <span class="large-text" style="color: #222222">이 아이템을 사용한 TOP5 챔피언</span>
+                    </strong>
+                </div>
+                <ItemMostUnit :mostUnit="mostUnit"/>
             </div>
         </div>
         <div v-if="!on_load">
@@ -37,19 +43,27 @@
 
 <script>
 export default {
-    name: "Item",
+    name: "index",
     data() {
         return {
             on_load: false,
-            itemList: [],
         }
     },
     async mounted() {
-        if (this.seasonInfo) {
+        if (!this.itemList === false) {
             await this.getItemList();
         }
+        if (this.$route.params.id) {
+            await this.getItemDetail(this.$route.params.id);
+        } else {
+            await this.$router.push('/' + this.$route.params.seasons + '/item/' + this.itemList[0].id);
+        }
+
     },
     computed: {
+        itemList() {
+            return this.$store.getters['itemList'];
+        },
         seasonInfo() {
             return this.$store.getters['seasonInfo'];
         },
@@ -58,6 +72,9 @@ export default {
         },
         itemDetail() {
             return this.$store.getters['itemDetail'];
+        },
+        mostUnit() {
+            return this.$store.getters['mostUnit'];
         },
     },
     methods: {
@@ -69,7 +86,7 @@ export default {
         async getItemList() {
             this.on_load = false;
             let params = {
-                seasonId: this.currentSeason,
+                seasonId: this.$route.params.seasons,
             }
 
             let data = [];
@@ -77,18 +94,13 @@ export default {
                 res.map((item, index) => {
                     data.push(item);
                 });
-                this.$store.commit('setItemList', data);
                 return res;
             }).catch((err) => {
                 console.log(err)
             });
 
             if (data) {
-                this.itemList = data;
-            }
-
-            if (this.itemList.length > 0) {
-                await this.getItemDetail(this.itemList[9].id);
+                this.$store.commit('setItemList', data);
             }
 
         },
@@ -103,7 +115,25 @@ export default {
             }).catch((err) => {
                 console.log(err)
             });
+
+            await this.getItemMostUnit();
+
             this.on_load = true;
+        },
+        async getItemMostUnit() {
+            let params = {
+                'seasonId' : this.$route.params.seasons,
+                'itemId' : this.$route.params.id,
+            };
+            await this.$store.dispatch('getItemMostUnit', params).then((res) => {
+                this.$store.commit('setMostUnit', res);
+                return res;
+            }).catch((err) => {
+                console.log(err)
+            });
+        },
+        movePage(url) {
+            this.$router.push(url);
         },
     }
 

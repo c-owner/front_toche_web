@@ -32,10 +32,13 @@ export default {
             return Array.isArray(arr) && arr.length > 0;
         },
         getUnitDetail(id) {
-            this.$emit('getUnitDetail', id);
+            this.movePage('/' + this.$route.params.seasons + '/unit/' + id);
         },
         getItemDetail(id) {
-            this.$emit('getItemDetail', id);
+            this.movePage('/' + this.$route.params.seasons + '/item/' + id)
+        },
+        movePage(url) {
+            this.$router.push(url);
         },
     },
 }
