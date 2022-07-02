@@ -96,4 +96,12 @@ export const actions = {
         });
     },
 
+    async getItemList(store, params) {
+        return await axios.get(api_url + '/items', {params}).then(({data}) => {
+            return data;
+        }).catch((err) => {
+            console.log(err)
+        });
+    },
+
 }

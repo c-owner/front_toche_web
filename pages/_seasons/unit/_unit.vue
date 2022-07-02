@@ -1,17 +1,6 @@
 <template>
     <div class="w100p flex unit_wrap">
-        <div class="lnb">
-            <ul>
-                <li v-for="(unit, u_idx) in units" :key="unit.id" class="unit-list">
-                    <div class="unit-box" @click="getUnitDetail(unit.id)">
-                        <div class="unit_img_box p-relative" :style="`background: url(${unit.iconPath}) center / contain`">
-                            <el-badge :value="unit.cost" class="item p-absoulte lnb_unit_box" style="left: 3px;"></el-badge>
-                        </div>
-                        <div class="unit_name">{{ unit.krName }}</div>
-                    </div>
-                </li>
-            </ul>
-        </div>
+        <UiLnb :units="units" @getUnitDetail="getUnitDetail"/>
         <!--        상세 -->
         <div class="main-wrap p-relative pb80" v-if="!loading">
             <div class="p-relative w100p flex"
@@ -21,27 +10,27 @@
                         <strong class="text-white unit_banner_name">{{ unitDetail.krName }}</strong>
                     </div>
                     <div class="p-absoulte cost_wrap">
-                        <img class="in_block cost_img" src="~/assets/images/icon/cost_icon.png" alt="cost" />
+                        <img class="in_block cost_img" src="~/assets/images/icon/cost_icon.png" alt="cost"/>
                         <div class="in_block cost_value">
                             <span>{{ unitDetail.cost }}</span>
                         </div>
                     </div>
                 </div>
-                <UnitStats :stats="unitDetail.stats" />
-                <UnitTraits :traits="unitDetail.traits" />
+                <UnitStats :stats="unitDetail.stats"/>
+                <UnitTraits :traits="unitDetail.traits"/>
             </div>
             <div class="unit_content_wrap p-relative">
-                <UnitAbility :ability="unitDetail.ability" />
+                <UnitAbility :ability="unitDetail.ability"/>
                 <div class="text-left pl16 pr16 pt35">
                     <strong class="fs16">
                         <span class="large-text" style="color: #222222">{{ unitDetail.krName }}</span>(이)가 자주 사용한 아이템
                     </strong>
-                    <UnitMostItem :mostItem="mostItem" />
+                    <UnitMostItem :mostItem="mostItem"/>
                 </div>
             </div>
         </div>
         <div style="width: 100%;position: absolute;top: 50%;" v-if="loading">
-            <Loading />
+            <Loading/>
         </div>
 
 
