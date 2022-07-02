@@ -2,15 +2,19 @@
     <div class="w100p flex unit_wrap">
         <UiLnb :items="itemList" @getItemDetail="getItemDetail"/>
         <div class="main-wrap p-relative pb80" v-if="on_load">
+            <div class="pa30" style="z-index: 1; background-color: #212121;">
+                <div class="text-white large-text" style="display: block;">
+                    <strong class="text-white unit_banner_name">{{ itemDetail.krName }}</strong>
+                </div>
             <div class="p-relative w100p flex align-center"
                  style="z-index: 1; background-color: #212121;">
-                <div class="unit_top_banner p-relative" :style="`background-image: url(${itemDetail.iconPath})`">
-                    <div class="p-absoulte w100p over_text">
-                        <strong class="text-white unit_banner_name">{{ itemDetail.krName }}</strong>
+                    <div class="unit_top_banner p-relative" :style="`background-image: url(${itemDetail.iconPath})`">
+                        <div class="p-absoulte w100p over_text">
+                        </div>
                     </div>
-                </div>
-                <div class="text-white desc pa30 word-keep"
-                     style="width: calc(100% - 260px); line-height: 1.2" v-html="itemDetail.desc">
+                    <div class="text-white desc pa30 word-keep"
+                         style="width: calc(100% - 260px); line-height: 1.2" v-html="itemDetail.desc">
+                    </div>
                 </div>
             </div>
             <div class="unit_content_wrap p-relative"
