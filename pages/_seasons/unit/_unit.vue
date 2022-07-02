@@ -20,7 +20,7 @@
                 <UnitTraits :traits="unitDetail.traits"/>
             </div>
             <div class="unit_content_wrap p-relative">
-                <UnitAbility :ability="unitDetail.ability"/>
+                <UnitAbility v-if="has_obj_empty(unitDetail.ability)" :ability="unitDetail.ability"/>
                 <div class="text-left pl16 pr16 pt35">
                     <strong class="fs16">
                         <span class="large-text" style="color: #222222">{{ unitDetail.krName }}</span>(이)가 자주 사용한 아이템
@@ -72,6 +72,11 @@ export default {
         },
     },
     methods: {
+        has_obj_empty(obj) {
+            for(let key in obj) {
+                return obj[key] ? true : false;
+            }
+        },
         movePage(url) {
             this.$router.push(url);
         },

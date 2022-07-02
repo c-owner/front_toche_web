@@ -52,42 +52,7 @@ export default {
         };
     },
     mounted() {
-        this.on_load = false;
-        try {
-            this.$store.dispatch('getSeasonList').then(res => {
-                res.forEach((item, index) => {
-                    if (item.num) {
-                        item.title = "시즌" + item.num;
-                    }
-                    if (res[index + 1]) {
-                        if (item.name.indexOf('Tutorial') > 0) {
-                            item.title = "시즌" + item.num + " 설명서";
-                            item.num += 0.5;
-                        } else {
-                            // 겹치면 0.5 시즌
-                            if (res[index + 1].num === item.num) {
-                                item.num += 0.5;
-                            }
-                        }
-                    }
-                    if (item.name.indexOf('Stage') > 0) {
-                        item.title = "시즌" + item.num + "";
-                    }
-                });
-                this.$store.commit('setSeasonList', res);
-
-                let seasonInfo = res.filter(res => {
-                    if (res.id === Number(this.currentSeason)) {
-                        return res;
-                    }
-                })[0];
-                this.$store.commit('setSeasonInfo', seasonInfo);
-                this.on_load = true;
-                // this.$store.commit('setCurrentSeason', this.currentSeason);
-            });
-        } catch (e) {
-            console.log(e);
-        }
+        this.getSeasonInfo();
     },
     computed: {
         seasons() {
@@ -95,8 +60,45 @@ export default {
         },
     },
     methods: {
+        getSeasonInfo() {
+            this.on_load = false;
+            try {
+                this.$store.dispatch('getSeasonList').then(res => {
+                    res.forEach((item, index) => {
+                        if (item.num) {
+                            item.title = "시즌" + item.num;
+                        }
+                        if (res[index + 1]) {
+                            if (item.name.indexOf('Tutorial') > 0) {
+                                item.title = "시즌" + item.num + " 설명서";
+                                item.num += 0.5;
+                            } else {
+                                // 겹치면 0.5 시즌
+                                if (res[index + 1].num === item.num) {
+                                    item.num += 0.5;
+                                }
+                            }
+                        }
+                        if (item.name.indexOf('Stage') > 0) {
+                            item.title = "시즌" + item.num + "";
+                        }
+                    });
+                    this.$store.commit('setSeasonList', res);
+
+                    let seasonInfo = res.filter(res => {
+                        if (res.id === Number(this.currentSeason)) {
+                            return res;
+                        }
+                    })[0];
+                    this.$store.commit('setSeasonInfo', seasonInfo);
+                    this.on_load = true;
+                    // this.$store.commit('setCurrentSeason', this.currentSeason);
+                });
+            } catch (e) {
+                console.log(e);
+            }
+        },
         handleSelect(key, keyPath) {
-            console.log(key, keyPath)
             if (key === 'guide') {
                 this.$store.commit('setCurrentSeason', this.currentSeason);
                 this.$router.push('/' + this.currentSeason + '/' + key);
@@ -121,6 +123,17 @@ export default {
         },
         selectSeason() {
             this.$store.commit('setCurrentSeason', this.currentSeason);
+
+        },
+    },
+    watch: {
+        'currentSeason': function (val) {
+            this.$store.commit('setCurrentSeason', val);
+            let path = this.$route.path.split('/');
+            path[1] = val;
+            path = path.join('/');
+            this.$router.push(path);
+            this.getSeasonInfo();
         },
     },
 }
