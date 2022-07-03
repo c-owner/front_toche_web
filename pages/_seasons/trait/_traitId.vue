@@ -84,11 +84,11 @@ export default {
 
             this.lnb_load = true;
         },
-        async getTraitDetail() {
+        async getTraitDetail(id) {
             this.on_load = false;
 
             let params = {
-                traitId: this.$route.params.traitId,
+                traitId: id,
             };
 
             await this.$store.dispatch('getTraitDetail', params).then((res) => {

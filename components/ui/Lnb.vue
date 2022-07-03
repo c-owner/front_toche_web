@@ -31,13 +31,24 @@
                 </div>
             </li>
         </ul>
+        <ul v-else-if="has_arr_empty(augments)" class="pb16" style="max-height: 80vh">
+            <li
+                v-for="(augment, index) in augments" :key="augment.id" class="unit-list">
+                <div class="unit-box" @click="getAugmentDetail(augment.id)">
+                    <div class="unit_img_box p-relative"
+                         :style="`background: url(${augment.iconPath}) center / contain; background-color: #222;`">
+                    </div>
+                    <div class="unit_name">{{ augment.krName }}</div>
+                </div>
+            </li>
+        </ul>
     </div>
 </template>
 
 <script>
 export default {
     name: "Lnb",
-    props: ['units', 'items', 'traits'],
+    props: ['units', 'items', 'traits', 'augments'],
     methods: {
         has_arr_empty(arr) {
             return Array.isArray(arr) && arr.length > 0;
@@ -50,6 +61,9 @@ export default {
         },
         getTraitDetail(id) {
             this.movePage('/' + this.$route.params.seasons + '/trait/' + id)
+        },
+        getAugmentDetail(id) {
+            this.movePage('/' + this.$route.params.seasons + '/augment/' + id)
         },
         movePage(url) {
             this.$router.push(url);
