@@ -19,6 +19,8 @@ export const state = () => ({
 
     traitList: [],
     traitDetail: {},
+    augmentList: [],
+    augmentDetail: {},
 })
 
 
@@ -59,7 +61,14 @@ export const mutations = {
     },
     setTraitDetail(state, data) {
         state.traitDetail = data || {};
-    }
+    },
+
+    setAugmentList(state, data) {
+        state.augmentList = data || [];
+    },
+    setAugmentDetail(state, data) {
+        state.augmentDetail = data || {};
+    },
 }
 
 
@@ -76,7 +85,8 @@ export const getters = {
     mostUnit: state => state.mostUnit || [],
     traitList: state => state.traitList || [],
     traitDetail: state => state.traitDetail || {},
-
+    augmentList: state => state.augmentList || [],
+    augmentDetail: state => state.augmentDetail || {},
 }
 
 
@@ -147,6 +157,20 @@ export const actions = {
     },
     async getTraitDetail(store, params) {
         return await axios.get(api_url + '/traits/' + params.traitId).then(({data}) => {
+            return data;
+        }).catch((err) => {
+            console.log(err)
+        });
+    },
+    async getAugmentList(store, params) {
+        return await axios.get(api_url + '/augments', {params}).then(({data}) => {
+            return data;
+        }).catch((err) => {
+            console.log(err)
+        });
+    },
+    async getAugmentDetail(store, params) {
+        return await axios.get(api_url + '/augments/' + params.augmentId).then(({data}) => {
             return data;
         }).catch((err) => {
             console.log(err)
