@@ -31,9 +31,9 @@
                 </div>
             </li>
         </ul>
-        <ul v-else-if="has_arr_empty(traits)" class="pb16" style="max-height: 80vh">
+        <ul v-else-if="has_arr_empty(augments)" class="pb16" style="max-height: 80vh">
             <li
-                v-for="(augment, index) in augments" :key="trait.id" class="unit-list">
+                v-for="(augment, index) in augments" :key="augment.id" class="unit-list">
                 <div class="unit-box" @click="getAugmentDetail(augment.id)">
                     <div class="unit_img_box p-relative"
                          :style="`background: url(${augment.iconPath}) center / contain; background-color: #222;`">

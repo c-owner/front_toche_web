@@ -6,7 +6,20 @@
         </div>
         <div class="main-wrap p-relative pb80" v-if="on_load">
             <div class="pa30" style="z-index: 1; background-color: #212121;">
+                <div class="text-white large-text flex-center">
+                    <div class="unit_img_box p-relative trait_box"
+                         :style="`background-image: url(${augmentDetail.iconPath})`">
+                    </div>
+                    <strong class="text-white unit_banner_name pl16">{{ augmentDetail.krName }}</strong>
+                    <el-badge :value="augmentDetail.tierTotalCount"></el-badge>
+                </div>
+                <div class="p-relative w100p"
+                     style="z-index: 1; background-color: #212121;">
+                    <div class="text-white desc pa30 word-keep"
+                         style="line-height: 1.2" v-html="augmentDetail.desc">
 
+                    </div>
+                </div>
             </div>
         </div>
         <div v-else>
@@ -52,8 +65,14 @@ export default {
             let params = {
                 seasonId: this.$route.params.seasons,
             };
+            let data = [];
             await this.$store.dispatch('getAugmentList', params).then((res) => {
-                this.$store.commit('setAugmentList', res);
+                res.map((item, index) => {
+                    if (item.desc !== null && item.iconPath !== null) {
+                        data.push(item);
+                    }
+                });
+                this.$store.commit('setAugmentList', data);
                 this.lnb_load = true;
             });
         },
