@@ -43,7 +43,7 @@
             </li>
         </ul>
         <ul v-else-if="has_arr_empty(deckUnit)" class="pb16" style="max-height: 80vh">
-            <el-button type="primary" class="w100p" @click="selects = [];">초기화</el-button>
+            <el-button type="primary" class="w100p" @click="initSelect">초기화</el-button>
             <li
                 v-for="(unit, index) in deckUnit" :key="unit.id" class="unit-list">
                 <div class="unit-box" @click="selectUnits(unit)">
@@ -98,7 +98,10 @@ export default {
                 this.selects.push(unit);
             }
             await this.$emit('selectUnits', this.selects);
-        }
+        },
+        async initSelect() {
+            await this.$emit('selectUnits', []);
+        },
     },
 }
 </script>
