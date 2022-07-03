@@ -46,9 +46,9 @@
             <el-button type="primary" class="w100p" @click="selects = [];">초기화</el-button>
             <li
                 v-for="(unit, index) in deckUnit" :key="unit.id" class="unit-list">
-                <div class="unit-box" @click="selectUnits(unit.id)">
+                <div class="unit-box" @click="selectUnits(unit)">
                     <div class="unit_img_box p-relative"
-                         :class="{'selected': selects.includes(unit.id)}"
+                         :class="{'selected': selects.includes(unit)}"
                          :style="`background: url(${unit.iconPath}) center / contain`">
                         <el-badge :value="unit.cost" class="item p-absoulte lnb_unit_box" style="left: 3px;"></el-badge>
                     </div>
@@ -62,10 +62,10 @@
 <script>
 export default {
     name: "Lnb",
-    props: ['units', 'items', 'traits', 'augments', 'deckUnit'],
+    props: ['units', 'items', 'traits', 'augments', 'deckUnit', 'selects'],
     data() {
         return {
-            selects: [],
+
         }
     },
     methods: {
@@ -87,15 +87,15 @@ export default {
         movePage(url) {
             this.$router.push(url);
         },
-        async selectUnits(id) {
-            if (this.selects.includes(id)) {
-                this.selects.splice(this.selects.indexOf(id), 1);
+        async selectUnits(unit) {
+            if (this.selects.includes(unit)) {
+                this.selects = this.selects.filter(u => u.id !== unit.id);
             } else {
                 if (this.selects.length > 4) {
                     this.$message.error('최대 5개까지 선택 가능합니다.');
                     return;
                 }
-                this.selects.push(id);
+                this.selects.push(unit);
             }
             await this.$emit('selectUnits', this.selects);
         }
