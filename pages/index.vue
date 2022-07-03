@@ -58,7 +58,7 @@
                     <div class="theme-text-color result_box"
                          style="line-height: 1.3;"
                     >
-                        <span class="bold" style="color:#222">해당 챔피언이 사용된 횟수 : </span> <span
+                        <span class="bold" style="color:#222">해당 증강체가 사용된 횟수 : </span> <span
                         class="bold">{{ guidAugment.allUsedCount }}</span>
                         <br/><span class="bold" style="color:#222"> 덱 사용 수 : </span> <span
                         class="bold">{{ guidAugment.resultCount }}</span>
