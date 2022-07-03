@@ -165,7 +165,7 @@ export default {
         async getAugmentList() {
             let data = [];
             let params = {
-                'seasonsId': this.$store.state.currentSeason
+                'seasonId': this.$store.state.currentSeason
             }
             await this.$store.dispatch('getAugmentList', params).then((res) => {
                 res.map((item, index) => {

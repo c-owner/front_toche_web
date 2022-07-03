@@ -112,8 +112,8 @@ export default {
             if (this.selects.includes(unit)) {
                 this.selects = this.selects.filter(u => u.id !== unit.id);
             } else {
-                if (this.selects.length > 4) {
-                    this.$message.error('최대 5개까지 선택 가능합니다.');
+                if (this.selects.length > 6) {
+                    this.$message.error('최대 7개까지 선택 가능합니다.');
                     return;
                 }
                 this.selects.push(unit);
