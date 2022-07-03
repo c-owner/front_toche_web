@@ -19,7 +19,7 @@
 
                 <el-menu-item index="unit">챔피언</el-menu-item>
                 <el-menu-item index="item">아이템</el-menu-item>
-                <el-menu-item index="deck">추천 덱</el-menu-item>
+<!--                <el-menu-item index="deck">추천 덱</el-menu-item>-->
                 <el-menu-item index="augment">증강체</el-menu-item>
                 <el-menu-item index="trait">특성</el-menu-item>
             </el-menu>
@@ -100,8 +100,7 @@ export default {
         },
         handleSelect(key, keyPath) {
             if (key === 'guide') {
-                this.$store.commit('setCurrentSeason', this.currentSeason);
-                this.$router.push('/' + this.currentSeason + '/' + key);
+                this.$router.push('/');
                 return;
             }
             if (keyPath.length > 1) {
