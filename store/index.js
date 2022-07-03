@@ -21,6 +21,9 @@ export const state = () => ({
     traitDetail: {},
     augmentList: [],
     augmentDetail: {},
+
+    guidUnitList: [],
+
 })
 
 
@@ -69,6 +72,10 @@ export const mutations = {
     setAugmentDetail(state, data) {
         state.augmentDetail = data || {};
     },
+
+    setGuidUnitList(state, data) {
+        state.guidUnitList = data || [];
+    }
 }
 
 
@@ -87,6 +94,8 @@ export const getters = {
     traitDetail: state => state.traitDetail || {},
     augmentList: state => state.augmentList || [],
     augmentDetail: state => state.augmentDetail || {},
+    guidUnitList: state => state.guidUnitList || [],
+
 }
 
 
@@ -94,7 +103,13 @@ export const getters = {
 export const actions = {
 
     async getUnitList(store, params) {
-        return await axios.get(api_url + '/units?seasonId=' + params.seasonId).then(({data}) => {
+        let paramPath = '';
+        if (params) {
+            paramPath = `/units?seasonId=${params.seasonId}`;
+        } else {
+            paramPath = '/units';
+        }
+        return await axios.get(api_url + paramPath).then(({data}) => {
             return data;
         }).catch((err) => {
             console.log(err)
@@ -176,5 +191,13 @@ export const actions = {
             console.log(err)
         });
     },
+    async getGuidUnitList(store, params) {
+        return await axios.get(api_url + '/guid/units?unitIds=' + params.unitIds).then(({data}) => {
+            return data;
+        }).catch((err) => {
+            console.log(err)
+        });
+    },
+
 
 }

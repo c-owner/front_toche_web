@@ -26,6 +26,7 @@
         "webpack": "^4.46.0"
     },
     "devDependencies": {
+        "@nuxt/types": "~2.15.0",
         "push-dir": "^0.4.1",
         "sass": "^1.53.0"
     }
