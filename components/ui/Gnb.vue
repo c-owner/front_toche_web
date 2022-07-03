@@ -21,7 +21,7 @@
                 <el-menu-item index="item">아이템</el-menu-item>
 <!--                <el-menu-item index="deck">추천 덱</el-menu-item>-->
                 <el-menu-item index="augment"
-                              v-if="currentSeason !== '27' && currentSeason !== '26' && currentSeason === '32'">
+                              v-if="currentSeason !== '27' && currentSeason !== '26' && currentSeason !== '32'">
                     증강체</el-menu-item>
                 <el-menu-item index="trait">특성</el-menu-item>
             </el-menu>
