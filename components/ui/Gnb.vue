@@ -140,15 +140,19 @@ export default {
     watch: {
         'currentSeason': function (val) {
             this.$store.commit('setCurrentSeason', val);
+            let seasonInfo = this.$store.state.seasonList.filter(res => {
+                if (res.id === Number(this.currentSeason)) {
+                    return res;
+                }
+            })[0];
+            this.$store.commit('setSeasonInfo', seasonInfo)
             if (this.$route.path === '/') {
                 this.$router.push('/');
-                this.getSeasonInfo();
             } else {
                 let path = this.$route.path.split('/');
                 path[1] = val;
                 path = path.join('/');
                 this.$router.push(path);
-                this.getSeasonInfo();
             }
         },
     },
