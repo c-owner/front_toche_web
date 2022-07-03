@@ -1,6 +1,11 @@
 <template>
     <div>
 
+        <div class="mt30 mb15"
+             style="border: 15px solid #e5e5e5; width: 1230px;"
+        >
+            <div class="large-text w100p bold" style="background-color: #e5e5e5;">챔피언 덱 가이드</div>
+        </div>
         <div class="w100p flex unit_wrap">
             <UiLnb :deckUnit="units" @selectUnits="selectUnits" :selects="selects"/>
             <div class="main-wrap p-relative pb80">
@@ -41,7 +46,11 @@
 
             </div>
         </div>
-
+        <div class="mt30 mb15"
+            style="border: 15px solid #e5e5e5; width: 1230px;"
+        >
+            <div class="large-text w100p bold" style="background-color: #e5e5e5;">증강체 덱 가이드</div>
+        </div>
         <div class="w100p flex unit_wrap">
             <UiLnb :deckAugment="augments" @selectAugments="selectAugments" :a_selects="a_selects"/>
             <div class="main-wrap p-relative pb80">
