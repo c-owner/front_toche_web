@@ -16,6 +16,9 @@ export const state = () => ({
     itemList: [],
     itemDetail: {},
     mostUnit: [],
+
+    traitList: [],
+    traitDetail: {},
 })
 
 
@@ -50,6 +53,13 @@ export const mutations = {
     setMostUnit(state, data) {
         state.mostUnit = data || [];
     },
+
+    setTraitList(state, data) {
+        state.traitList = data || [];
+    },
+    setTraitDetail(state, data) {
+        state.traitDetail = data || {};
+    }
 }
 
 
@@ -64,6 +74,8 @@ export const getters = {
     itemList: state => state.itemList || [],
     itemDetail: state => state.itemDetail || {},
     mostUnit: state => state.mostUnit || [],
+    traitList: state => state.traitList || [],
+    traitDetail: state => state.traitDetail || {},
 
 }
 
@@ -123,6 +135,21 @@ export const actions = {
             return data;
         }).catch((err) => {
             console.log(err);
+        });
+    },
+
+    async getTraitList(store, params) {
+        return await axios.get(api_url + '/traits', {params}).then(({data}) => {
+            return data;
+        }).catch((err) => {
+            console.log(err)
+        });
+    },
+    async getTraitDetail(store, params) {
+        return await axios.get(api_url + '/traits/' + params.traitId).then(({data}) => {
+            return data;
+        }).catch((err) => {
+            console.log(err)
         });
     },
 
