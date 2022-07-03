@@ -26,14 +26,14 @@ export default {
 <style lang="scss" scoped>
 
 .deck_result {
-    display: flex;
     margin-top: 30px;
 }
 .deck_result_box {
-    margin: 0 auto;
+    margin: 15px;
+    display: inline-block;
 
-    width: 90px;
-    height: 90px;
+    width: 120px;
+    height: 120px;
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
