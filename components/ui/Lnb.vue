@@ -56,16 +56,37 @@
                 </div>
             </li>
         </ul>
+        <ul v-else-if="has_arr_empty(deckAugment)" class="pb16" style="max-height: 80vh">
+            <el-button type="primary" class="w100p" @click="initAugment">초기화</el-button>
+            <li
+                v-for="(augm, index) in deckAugment" :key="augm.id" class="unit-list">
+                <div class="unit-box" @click="selectAugments(augm)">
+                    <div class="unit_img_box p-relative"
+                         :class="{'selected': a_selects.includes(augm)}"
+                         :style="`background: url(${augm.iconPath}) center / contain`">
+                    </div>
+                    <div class="unit_name">{{ augm.krName }}</div>
+                </div>
+            </li>
+        </ul>
+        <ul v-else>
+            <div v-loading="loading"
+                 element-loading-text="Loading..."
+                 element-loading-spinner="el-icon-loading"
+                 element-loading-background="rgba(0, 0, 0, 0.8)"
+                 style="width: 100%">
+            </div>
+        </ul>
     </div>
 </template>
 
 <script>
 export default {
     name: "Lnb",
-    props: ['units', 'items', 'traits', 'augments', 'deckUnit', 'selects'],
+    props: ['units', 'items', 'traits', 'augments', 'deckUnit', 'selects', 'deckAugment', 'a_selects'],
     data() {
         return {
-
+            loading: true,
         }
     },
     methods: {
@@ -101,6 +122,21 @@ export default {
         },
         async initSelect() {
             await this.$emit('selectUnits', []);
+        },
+        async selectAugments(augm) {
+            if (this.a_selects.includes(augm)) {
+                this.a_selects = this.a_selects.filter(u => u.id !== augm.id);
+            } else {
+                if (this.a_selects.length > 2) {
+                    this.$message.error('최대 3개까지 선택 가능합니다.');
+                    return;
+                }
+                this.a_selects.push(augm);
+            }
+            await this.$emit('selectAugments', this.a_selects);
+        },
+        async initAugment() {
+            await this.$emit('selectAugments', []);
         },
     },
 }

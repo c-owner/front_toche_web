@@ -23,7 +23,7 @@ export const state = () => ({
     augmentDetail: {},
 
     guidUnitList: [],
-
+    guidAugmentList: [],
 })
 
 
@@ -75,6 +75,9 @@ export const mutations = {
 
     setGuidUnitList(state, data) {
         state.guidUnitList = data || [];
+    },
+    setGuidAugmentList(state, data) {
+        state.guidAugmentList = data || [];
     }
 }
 
@@ -95,7 +98,7 @@ export const getters = {
     augmentList: state => state.augmentList || [],
     augmentDetail: state => state.augmentDetail || {},
     guidUnitList: state => state.guidUnitList || [],
-
+    guidAugmentList: state => state.guidAugmentList || [],
 }
 
 
@@ -198,6 +201,13 @@ export const actions = {
             console.log(err)
         });
     },
-
+    async getGuidAugmentList(store, params) {
+        return await axios.get(api_url + '/guid/augment?augmentIds='+ params.augmentIds + '&seasonId=' + params.seasonId)
+            .then(({data}) => {
+            return data;
+        }).catch((err) => {
+            console.log(err)
+        })
+    }
 
 }

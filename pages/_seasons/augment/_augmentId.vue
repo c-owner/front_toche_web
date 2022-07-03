@@ -1,4 +1,4 @@
-<template>
+7<template>
     <div class="w100p flex unit_wrap">
         <UiLnb :augments="augments" v-if="lnb_load"/>
         <div v-else>
