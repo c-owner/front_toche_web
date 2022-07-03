@@ -86,7 +86,7 @@ export default {
             if (this.seasonInfo.hasOwnProperty('id')) {
                 seasonId = this.seasonInfo.id;
             } else {
-                seasonId = 14;
+                seasonId = this.$route.params.seasons;
             }
 
             try {
