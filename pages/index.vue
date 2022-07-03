@@ -215,6 +215,7 @@ export default {
     watch: {
         'currentSeason': function (val) {
             this.getUnitList();
+            this.getAugmentList();
         },
     },
 

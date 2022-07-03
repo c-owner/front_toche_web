@@ -20,7 +20,9 @@
                 <el-menu-item index="unit">챔피언</el-menu-item>
                 <el-menu-item index="item">아이템</el-menu-item>
 <!--                <el-menu-item index="deck">추천 덱</el-menu-item>-->
-                <el-menu-item index="augment">증강체</el-menu-item>
+                <el-menu-item index="augment"
+                              v-if="currentSeason !== '27' && currentSeason !== '26' && currentSeason === '32'">
+                    증강체</el-menu-item>
                 <el-menu-item index="trait">특성</el-menu-item>
             </el-menu>
         </div>
@@ -31,6 +33,11 @@
                               :key="season.id" :label="season.title">
             </el-option>
         </el-select>
+        <el-tooltip class="cursor" content="화면이 제대로 뜨지 않는다면 시즌을 다시 선택하고 들어가보세요!" placement="bottom" effect="light">
+            <el-button style="background-color: #222222; border: none;">
+                <i class="el-icon-info" style="font-size: 16px; color: #FFD04b"></i>
+            </el-button>
+        </el-tooltip>
         <!--        <div class="none_item"></div>-->
     </div>
     <div v-else>
