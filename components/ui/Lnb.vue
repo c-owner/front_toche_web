@@ -42,13 +42,32 @@
                 </div>
             </li>
         </ul>
+        <ul v-else-if="has_arr_empty(deckUnit)" class="pb16" style="max-height: 80vh">
+            <el-button type="primary" class="w100p" @click="selects = [];">초기화</el-button>
+            <li
+                v-for="(unit, index) in deckUnit" :key="unit.id" class="unit-list">
+                <div class="unit-box" @click="selectUnits(unit.id)">
+                    <div class="unit_img_box p-relative"
+                         :class="{'selected': selects.includes(unit.id)}"
+                         :style="`background: url(${unit.iconPath}) center / contain`">
+                        <el-badge :value="unit.cost" class="item p-absoulte lnb_unit_box" style="left: 3px;"></el-badge>
+                    </div>
+                    <div class="unit_name">{{ unit.krName }}</div>
+                </div>
+            </li>
+        </ul>
     </div>
 </template>
 
 <script>
 export default {
     name: "Lnb",
-    props: ['units', 'items', 'traits', 'augments'],
+    props: ['units', 'items', 'traits', 'augments', 'deckUnit'],
+    data() {
+        return {
+            selects: [],
+        }
+    },
     methods: {
         has_arr_empty(arr) {
             return Array.isArray(arr) && arr.length > 0;
@@ -68,10 +87,24 @@ export default {
         movePage(url) {
             this.$router.push(url);
         },
+        async selectUnits(id) {
+            if (this.selects.includes(id)) {
+                this.selects.splice(this.selects.indexOf(id), 1);
+            } else {
+                if (this.selects.length > 4) {
+                    this.$message.error('최대 5개까지 선택 가능합니다.');
+                    return;
+                }
+                this.selects.push(id);
+            }
+            await this.$emit('selectUnits', this.selects);
+        }
     },
 }
 </script>
 
 <style scoped>
-
+.selected {
+    border: 1px solid #F66947;
+}
 </style>
