@@ -33,7 +33,7 @@
                               :key="season.id" :label="season.title">
             </el-option>
         </el-select>
-        <el-tooltip class="cursor" content="화면이 제대로 뜨지 않는다면 시즌을 다시 선택하고 들어가보세요!" placement="bottom" effect="light">
+        <el-tooltip class="cursor" :content="tip_msg" placement="bottom" effect="light">
             <el-button style="background-color: #222222; border: none;">
                 <i class="el-icon-info" style="font-size: 16px; color: #FFD04b"></i>
             </el-button>
@@ -56,6 +56,9 @@ export default {
             currentSeason: '14',
             activeIndex: '1',
             on_load: false,
+            tip_msg: '화면이 제대로 뜨지 않는다면 시즌을 다시 선택하고 들어가보세요!' +
+                '- 시즌6 밑으로는 증강체를 조회할 수 없어요!' +
+                '- 시즌6 밑으로는 특성을 조회할 수 없어요!',
         };
     },
     mounted() {
