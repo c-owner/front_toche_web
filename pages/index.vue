@@ -15,8 +15,8 @@
                 <div class="theme-text-color result_box"
                      style="line-height: 1.3;"
                 >
-                    모두 사용 수 : {{ guidUnit.allUsedCount}}
-                    <br/> 결과 : {{ guidUnit.resultCount}}
+                    <span class="bold" style="color:#222">해당 챔피언이 사용된 횟수 : </span> <span class="bold">{{ guidUnit.allUsedCount}}</span>
+                    <br/><span class="bold" style="color:#222"> 덱 사용 수 : </span> <span class="bold">{{ guidUnit.resultCount}}</span>
                 </div>
                 <div v-if="guidUnit.allUsedCount === 0">
                     <el-empty description="결과가 없습니다!"></el-empty>
@@ -105,6 +105,7 @@ export default {
     margin: 0 auto;
     box-shadow: #e5e5e5 0px 0px 10px;
     padding: 50px;
+    border-radius: 15px;
 }
 
 </style>
