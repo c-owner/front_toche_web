@@ -11,6 +11,7 @@
                          :style="`background-image: url(${traitDetail.iconPath})`">
                     </div>
                     <strong class="text-white unit_banner_name pl16">{{ traitDetail.krName }}</strong>
+                    <el-badge :value="traitDetail.tierTotalCount"></el-badge>
                 </div>
                 <div class="p-relative w100p"
                      style="z-index: 1; background-color: #212121;">
@@ -20,6 +21,15 @@
                     </div>
                 </div>
             </div>
+            <div class="unit_content_wrap p-relative pl16 pr16">
+                <div class="text-left pt35">
+                    <strong class="fs16">
+                        <span class="large-text" style="color: #222222">이 특성에 해당되는 챔피언</span>
+                    </strong>
+                </div>
+                <TraitUnit :units="traitDetail.units" />
+            </div>
+
         </div>
         <div v-else>
             <Loading/>

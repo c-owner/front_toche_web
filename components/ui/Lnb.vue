@@ -1,6 +1,6 @@
 <template>
     <div class="lnb">
-        <ul v-if="has_arr_empty(units)" style="max-height: 800px">
+        <ul v-if="has_arr_empty(units)" class="pb16" style="max-height: 800px">
             <li v-for="(unit, u_idx) in units" :key="unit.id" class="unit-list">
                 <div class="unit-box" @click="getUnitDetail(unit.id)">
                     <div class="unit_img_box p-relative" :style="`background: url(${unit.iconPath}) center / contain`">
@@ -10,7 +10,7 @@
                 </div>
             </li>
         </ul>
-        <ul v-else-if="has_arr_empty(items)" style="max-height: 80vh">
+        <ul v-else-if="has_arr_empty(items)" class="pb16" style="max-height: 80vh">
             <li
                 v-for="(item, index) in items" :key="item.id" class="unit-list">
                 <div class="unit-box" @click="getItemDetail(item.id)">
@@ -20,7 +20,7 @@
                 </div>
             </li>
         </ul>
-        <ul v-else-if="has_arr_empty(traits)" style="max-height: 80vh">
+        <ul v-else-if="has_arr_empty(traits)" class="pb16" style="max-height: 80vh">
             <li
                 v-for="(trait, index) in traits" :key="trait.id" class="unit-list">
                 <div class="unit-box" @click="getTraitDetail(trait.id)">
