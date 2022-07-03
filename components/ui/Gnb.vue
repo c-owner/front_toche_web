@@ -104,10 +104,12 @@ export default {
                 return;
             }
             if (keyPath.length > 1) {
+                console.log("-----2")
                 this.currentSeason = key;
                 this.$store.commit('setCurrentSeason', this.currentSeason);
                 // this.$router.push('/seasons/' + key);
             } else {
+                console.log("-----1")
                 this.$router.push('/' + this.currentSeason + '/' + key);
             }
             let seasonInfo = this.$store.state.seasonList.filter(res => {
@@ -128,11 +130,16 @@ export default {
     watch: {
         'currentSeason': function (val) {
             this.$store.commit('setCurrentSeason', val);
-            let path = this.$route.path.split('/');
-            path[1] = val;
-            path = path.join('/');
-            this.$router.push(path);
-            this.getSeasonInfo();
+            if (this.$route.path === '/') {
+                this.$router.push('/');
+                this.getSeasonInfo();
+            } else {
+                let path = this.$route.path.split('/');
+                path[1] = val;
+                path = path.join('/');
+                this.$router.push(path);
+                this.getSeasonInfo();
+            }
         },
     },
 }

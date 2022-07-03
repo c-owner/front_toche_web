@@ -46,6 +46,9 @@ export default {
         await this.getUnitList()
     },
     computed: {
+        currentSeason() {
+            return this.$store.getters['currentSeason'];
+        },
         units() {
             return this.$store.getters['units'];
         },
@@ -56,7 +59,10 @@ export default {
     methods: {
         async getUnitList() {
             let data = [];
-            await this.$store.dispatch("getUnitList").then((res) => {
+            let params = {
+                'seasonId': this.$store.state.currentSeason
+            }
+            await this.$store.dispatch("getUnitList", params).then((res) => {
                 res.map((unit) => {
                     if (unit.iconPath !== null) {
                        data.push(unit);
@@ -93,7 +99,12 @@ export default {
             }
             await this.selectUnits(this.selects);
         },
-    }
+    },
+    watch: {
+        'currentSeason': function(val) {
+            this.getUnitList();
+        },
+    },
 
 }
 </script>
